@@ -20,13 +20,22 @@ def api_car(request, car_id):
 
 @api_view(['GET', 'POST'])
 def api_users(request):
-    if request.method == 'GET':
+    try:
         users = User.objects.all()
+    except User.DoesNotExist:
+        raise Http404()
+    
+    if request.method == 'GET':
         serialized_users = UserSerializer(users, many=True)
         return Response(serialized_users.data)
+    
     elif request.method == 'POST':
-        serialized_user = UserSerializer(data=request.data)
-        if serialized_user.is_valid():
-            serialized_user.save()
-            return Response(serialized_user.data, status=201)
-        return Response(serialized_user.errors, status=400)
+        new_user_data = request.data
+        serializer = UserSerializer(data=new_user_data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+    
+
+    
