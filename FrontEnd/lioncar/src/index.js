@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './components/Login';
@@ -11,15 +10,15 @@ import Home from './components/Home';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Login />,
   },
   {
     path: "register",
     element: <Register />,
   },
   {
-    path: "login",
-    element: <Login />,
+    path: "home",
+    element: <Home />,
   },
 ]);
 
