@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './login.css'
 import Db from '../../DB'
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 export default function Login(props) {
 
@@ -33,29 +35,36 @@ export default function Login(props) {
     };
 
     return (
-        <>
-            <div>Hello, Login!</div>
-            <form encType="multipart/form-data" onSubmit={handlePost}>
-                <div>
-                    <label htmlFor="email">Digite seu email:</label>
-                    <input placeholder="Email" type="email" id="email" name="email" required />
+        <div className="main-login">
+            <img className="logo-img" src='images/LOGO_LEAO_cortado.png' alt="Logo Lion Car" />
+            <div className='div-login-section'>
+                <p className="login-section-title">Faça seu login</p>
+                <form encType="multipart/form-data" onSubmit={handlePost}>
+                    <div className="form-section">
+                        <label htmlFor="email">Digite seu email:</label>
+                        <input className="input-field" placeholder="Email" type="email" id="email" name="email" required />
+                    </div>
+                    <div className="form-section">
+                        <label htmlFor="password">Digite sua senha:</label>
+                        <div className="input-btn">
+                            <input className="input-field"  placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
+                            <button className="viewpassword-btn" type="button" onClick={togglePasswordVisibility}>
+                                {showPassword ? <RemoveRedEyeOutlinedIcon/> : <VisibilityOffOutlinedIcon/>}
+                            </button>
+                        </div>
+                    </div>
+                    <div className="submit-section">
+                        <button className="btn-login-form" type="submit">
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+                <p>{warningLogin}</p>
+                <div className="footer-form-login">
+                    <p className="text-register">Novo no LionCar?</p>
+                    <Link to="/register">Registrar-se</Link>
                 </div>
-                <div>
-                    <label htmlFor="password">Digite sua senha:</label>
-                    <input placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
-                    <button type="button" onClick={togglePasswordVisibility}>
-                        {showPassword ? "Ocultar" : "Mostrar"}
-                    </button>
-                </div>
-                <button className="btn-login-form" type="submit">
-                    Sign in
-                </button>
-            </form>
-            <p>{warningLogin}</p>
-            <div>
-                <p>Novo no LionCar?</p>
-                <Link to="/register">Register</Link>
             </div>
-        </>
+        </div>
     );
 }
