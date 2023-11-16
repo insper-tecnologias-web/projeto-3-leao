@@ -4,6 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('api/cars/<int:car_id>/', views.api_car),
-    path('api/users', views.api_users),
+    path('api/cars/', views.api_cars),
+    #path('api/users', views.api_users),
+    path('api/token/', views.api_get_token),
+    path('api/users/', views.api_user),
 ]

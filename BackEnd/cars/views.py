@@ -1,41 +1,71 @@
 from django.http import HttpResponse
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.http import Http404
+from django.http import Http404, HttpResponseForbidden, JsonResponse
 from .serializers import CarSerializer, UserSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+
+
 
 from .models import Car, User
 
 def index(request):
     return HttpResponse("Olá mundo! Este é o app LEÃOOOOO")
 
-@api_view(['GET', 'POST'])
-def api_car(request, car_id):
-    try:
-        car = Car.objects.get(id=car_id)
-    except Car.DoesNotExist:
-        raise Http404()
-    serialized_car = CarSerializer(car)
-    return Response(serialized_car.data)
 
 @api_view(['GET', 'POST'])
-def api_users(request):
-    try:
-        users = User.objects.all()
-    except User.DoesNotExist:
-        raise Http404()
-    
+@permission_classes([IsAuthenticated])
+def api_cars(request):
+    if request.method == "POST":
+        new_car_data = request.data
+        user = new_car_data['user']
+        price = new_car_data['price']
+        brand = new_car_data['brand']
+        model = new_car_data['model']
+        year = new_car_data['year']
+        fuel = new_car_data['fuel']
+        fipeCode = new_car_data['fipeCode']
+        car = Car(user=user, price=price, brand=brand, model=model, year=year, fuel=fuel, fipeCode=fipeCode)
+        car.save()
+
+    cars = Car.objects.all()
+
+    serialized_car = CarSerializer(cars, many=True)
+    return Response(serialized_car.data)
+
+@api_view(['GET','POST'])
+def api_user(request):
     if request.method == 'GET':
+        users = User.objects.all()
         serialized_users = UserSerializer(users, many=True)
         return Response(serialized_users.data)
-    
-    elif request.method == 'POST':
-        new_user_data = request.data
-        serializer = UserSerializer(data=new_user_data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+    if request.method == 'POST':
+        username = request.data['username']
+        email = request.data['email']
+        password = request.data['password']
+
+        user = User.objects.create_user(username, email, password)
+        user.save()
+        return Response(status=204)
+
+@api_view(['POST'])
+def api_get_token(request):
+    try:
+        if request.method == 'POST':
+            username = request.data['username']
+            password = request.data['password']
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                token, created = Token.objects.get_or_create(user=user)
+                return JsonResponse({"token":token.key})
+            else:
+                return HttpResponseForbidden()
+    except:
+        return HttpResponseForbidden()
     
 
     
