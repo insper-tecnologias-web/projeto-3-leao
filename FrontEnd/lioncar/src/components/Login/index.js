@@ -8,6 +8,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 export default function Login(props) {
 
     const [warningLogin, setWarningLogin] = useState(null);
+    const [warningColor, setWarningColor] = useState('red');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
@@ -23,12 +24,15 @@ export default function Login(props) {
         const filteredUser = DBusers.find((user) => user.email === formEmail);
 
         if (!filteredUser) {
-            setWarningLogin('usario nao encontrado');
+            setWarningLogin('Usuário nao encontrado');
+            setWarningColor('red');
         } else {
             if (formPassword !== filteredUser.password) {
-                setWarningLogin('senha incorreta');
+                setWarningLogin('Senha incorreta');
+                setWarningColor('red');
             } else {
-                setWarningLogin('senha correta');
+                setWarningLogin('Senha correta');
+                setWarningColor('green');
                 navigate("home");
             }
         }
@@ -59,7 +63,7 @@ export default function Login(props) {
                         </button>
                     </div>
                 </form>
-                <p>{warningLogin}</p>
+                <p className="warningLogin" style={{ color: warningColor }}>{warningLogin}</p>
                 <div className="footer-form-login">
                     <p className="text-register">Novo no LionCar?</p>
                     <Link to="/register">Registrar-se</Link>
