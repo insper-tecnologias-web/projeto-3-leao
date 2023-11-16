@@ -1,9 +1,10 @@
 import React from "react";
 import './home.css'
+import Header from "./components/Header"
 
 export default function Home(props) {
 
     return (
-        <div>Hello, Home!</div>
+        <div><Header /></div>
     );
 }
