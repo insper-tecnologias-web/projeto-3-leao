@@ -7,7 +7,7 @@ from .serializers import CarSerializer
 from .models import Car
 
 def index(request):
-    return HttpResponse("Olá mundo! Este é o app notes de Tecnologias Web do Insper.")
+    return HttpResponse("Olá mundo! Este é o app LEÃOOOOO")
 
 @api_view(['GET', 'POST'])
 def api_note(request, car_id):
