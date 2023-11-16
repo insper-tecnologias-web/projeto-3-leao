@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './login.css'
 import Db from '../../DB'
 
 export default function Login(props) {
 
     const [warningLogin, setWarningLogin] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -14,14 +20,14 @@ export default function Login(props) {
         const DBusers = await Db.getUsers();
         const filteredUser = DBusers.find((user) => user.email === formEmail);
 
-        if (!filteredUser){
+        if (!filteredUser) {
             setWarningLogin('usario nao encontrado');
         } else {
             if (formPassword !== filteredUser.password) {
                 setWarningLogin('senha incorreta');
             } else {
                 setWarningLogin('senha correta');
-                
+                navigate("home");
             }
         }
     };
@@ -36,7 +42,10 @@ export default function Login(props) {
                 </div>
                 <div>
                     <label htmlFor="password">Digite sua senha:</label>
-                    <input placeholder="Senha" type="password" id="password" name="password" required />
+                    <input placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
+                    <button type="button" onClick={togglePasswordVisibility}>
+                        {showPassword ? "Ocultar" : "Mostrar"}
+                    </button>
                 </div>
                 <button className="btn-login-form" type="submit">
                     Sign in

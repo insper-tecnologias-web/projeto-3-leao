@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import './register.css'
 import Db from '../../DB'
 import { Link } from "react-router-dom";
@@ -6,22 +6,55 @@ import { Link } from "react-router-dom";
 export default function Register(props) {
 
     const [warningRegister, setWarningRegister] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const checkUserExistenceInDB = async (formEmail) => {
+        const DBusers = await Db.getUsers();
+        const userExists = DBusers.some((user) => user.email === formEmail);
+        console.log(userExists);
+        return userExists;
+    };
 
     const handlePost = async (e) => {
         e.preventDefault();
 
         console.log('$$$');
         const formUser = new FormData(e.target);
-        console.log(formUser);
         const formName = e.target.name.value;
         const formEmail = e.target.email.value;
         const formPassword = e.target.password.value;
         const formConfirmPassword = e.target.confirmpassword.value;
 
-        if (formPassword !== formConfirmPassword) {
+        if (formName.length <= 0) {
+            setWarningRegister('Insira um nome');
+        }
+        else if (formEmail.length <= 0) {
+            setWarningRegister('Insira um email');
+        }
+        else if (formPassword.length <= 0) {
+            setWarningRegister('Insira uma senha');
+        }
+        else if (formPassword !== formConfirmPassword) {
             setWarningRegister('Senhas diferentes');
         }
-
+        else if (checkUserExistenceInDB(formEmail) === true) {
+            setWarningRegister('Este email já foi cadastrado');
+        }
+        else {
+            setWarningRegister('Usuário cadastrado!');
+            const userData = {};
+            formUser.forEach((value, key) => {
+                console.log(key);
+                if (key !== 'confirmpassword') {
+                    userData[key] = value;
+                }
+            });
+            Db.postUser(userData);
+        }
     };
 
     return (
@@ -43,8 +76,12 @@ export default function Register(props) {
                 </div>
                 <div>
                     <label htmlFor="password">Digite sua senha:</label>
-                    <input placeholder="Senha" type="password" id="password" name="password" required />
+                    <input placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
+                    <button type="button" onClick={togglePasswordVisibility}>
+                        {showPassword ? "Ocultar" : "Mostrar"}
+                    </button>
                 </div>
+
                 <div>
                     <label htmlFor="password">Confirmar senha:</label>
                     <input placeholder="Senha" type="password" id="confirmpassword" name="confirmpassword" required />
@@ -55,7 +92,7 @@ export default function Register(props) {
             </form>
             <p>{warningRegister}</p>
             <div>
-                <p>Novo no LionCar?</p>
+                <p>Já possui uma conta?</p>
                 <Link to="/">Login</Link>
             </div>
         </>
