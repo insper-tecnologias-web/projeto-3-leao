@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './login.css'
 import Db from '../../DB'
 
 export default function Login(props) {
 
+    const [warningLogin, setWarningLogin] = useState(null);
+
     const handlePost = async (e) => {
         e.preventDefault();
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('');
+        const formEmail = e.target.email.value;
+        const formPassword = e.target.password.value;
+        const DBusers = await Db.getUsers();
+        const filteredUser = DBusers.find((user) => user.email === formEmail);
 
-        const users = Db.getUsers();
-        console.log(users);
+        if (!filteredUser){
+            setWarningLogin('usario nao encontrado');
+        } else {
+            if (formPassword !== filteredUser.password) {
+                setWarningLogin('senha incorreta');
+            } else {
+                setWarningLogin('senha correta');
+                
+            }
+        }
     };
 
     return (
@@ -33,6 +42,7 @@ export default function Login(props) {
                     Sign in
                 </button>
             </form>
+            <p>{warningLogin}</p>
             <div>
                 <p>Novo no LionCar?</p>
                 <Link to="/register">Register</Link>

@@ -1,10 +1,10 @@
 import React from "react";
 import './home.css'
-import Header from "./components/Header"
+//import Header from "./components/Header"
 
 export default function Home(props) {
 
     return (
-        <div><Header /></div>
+        <div>AA</div>
     );
 }
