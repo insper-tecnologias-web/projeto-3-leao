@@ -15,17 +15,22 @@ const basicFetch = async (endpoint) => {
 const Db = {
     getUsers: async () => {
         try {
-            const db = {
-                events: await basicFetch('api/users/'),
-            };
+            const users = await basicFetch('api/users');
 
-            return db;
+            return users;
         } catch (error) {
             console.log('[ERROR]');
             console.error("Erro ao buscar dados:", error);
             return null;
         }
     },
+
+    postUser: async (formUser) => {
+        const endpoint = 'api/users';
+        axios.post(`${API_BASE}${endpoint}`,formUser)
+        .then((response)=>{console.log(response)})
+        .catch((error)=>console.log(error))
+    }
 };
 
 export default Db;

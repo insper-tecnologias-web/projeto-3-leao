@@ -1,42 +1,74 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import './login.css'
 import Db from '../../DB'
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 export default function Login(props) {
 
+    const [warningLogin, setWarningLogin] = useState(null);
+    const [warningColor, setWarningColor] = useState('red');
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const handlePost = async (e) => {
         e.preventDefault();
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('');
+        const formEmail = e.target.email.value;
+        const formPassword = e.target.password.value;
+        const DBusers = await Db.getUsers();
+        const filteredUser = DBusers.find((user) => user.email === formEmail);
 
-        const users = Db.getUsers();
-        console.log(users);
+        if (!filteredUser) {
+            setWarningLogin('Usuário nao encontrado');
+            setWarningColor('red');
+        } else {
+            if (formPassword !== filteredUser.password) {
+                setWarningLogin('Senha incorreta');
+                setWarningColor('red');
+            } else {
+                setWarningLogin('Senha correta');
+                setWarningColor('green');
+                navigate("home");
+            }
+        }
     };
 
     return (
-        <>
-            <div>Hello, Login!</div>
-            <form encType="multipart/form-data" onSubmit={handlePost}>
-                <div>
-                    <label htmlFor="email">Digite seu email:</label>
-                    <input placeholder="Email" type="email" id="email" name="email" required />
+        <div className="main-login">
+            <img className="logo-img" src='images/LOGO_LEAO_cortado.png' alt="Logo Lion Car" />
+            <div className='div-login-section'>
+                <p className="login-section-title">Faça seu login</p>
+                <form encType="multipart/form-data" onSubmit={handlePost}>
+                    <div className="form-section">
+                        <label htmlFor="email">Digite seu email:</label>
+                        <input className="input-field" placeholder="Email" type="email" id="email" name="email" required />
+                    </div>
+                    <div className="form-section">
+                        <label htmlFor="password">Digite sua senha:</label>
+                        <div className="input-btn">
+                            <input className="input-field"  placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
+                            <button className="viewpassword-btn" type="button" onClick={togglePasswordVisibility}>
+                                {showPassword ? <RemoveRedEyeOutlinedIcon/> : <VisibilityOffOutlinedIcon/>}
+                            </button>
+                        </div>
+                    </div>
+                    <div className="submit-section">
+                        <button className="btn-login-form" type="submit">
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+                <p className="warningLogin" style={{ color: warningColor }}>{warningLogin}</p>
+                <div className="footer-form-login">
+                    <p className="text-register">Novo no LionCar?</p>
+                    <Link to="/register">Registrar-se</Link>
                 </div>
-                <div>
-                    <label htmlFor="password">Digite sua senha:</label>
-                    <input placeholder="Senha" type="password" id="password" name="password" required />
-                </div>
-                <button className="btn-login-form" type="submit">
-                    Sign in
-                </button>
-            </form>
-            <div>
-                <p>Novo no LionCar?</p>
-                <Link to="/register">Register</Link>
             </div>
-        </>
+        </div>
     );
 }
