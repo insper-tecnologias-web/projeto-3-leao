@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './register.css'
 import Db from '../../DB'
 import { Link } from "react-router-dom";
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 export default function Register(props) {
 
@@ -59,41 +61,49 @@ export default function Register(props) {
 
     return (
         <>
-            <div>Hello, Register!</div>
+            <div className="main-login">    
+            <img className="logo-img" src='images/welcome-lion.png' alt="Logo Lion Car" />
+            <div className="div-login-section">
+            <p className="login-section-title">Hello, Register!</p>
             <form encType="multipart/form-data" onSubmit={handlePost}>
-                <div>
+                <div  className="form-section">
                     <label htmlFor="name">Digite seu nome:</label>
                     <input
+                        className="input-field"
                         type="text"
                         maxLength="20"
                         placeholder="Nome do usuário"
                         name="name"
                     />
                 </div>
-                <div>
+                <div  className="form-section">
                     <label htmlFor="email">Digite seu email:</label>
-                    <input placeholder="Email" type="email" id="email" name="email" required />
+                    <input className="input-field" placeholder="Email" type="email" id="email" name="email" required />
                 </div>
-                <div>
-                    <label htmlFor="password">Digite sua senha:</label>
-                    <input placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
-                    <button type="button" onClick={togglePasswordVisibility}>
-                        {showPassword ? "Ocultar" : "Mostrar"}
-                    </button>
-                </div>
+                <div className="form-section">
+                        <label htmlFor="password">Digite sua senha:</label>
+                        <div className="input-btn">
+                            <input className="input-field"  placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
+                            <button className="viewpassword-btn" type="button" onClick={togglePasswordVisibility}>
+                                {showPassword ? <RemoveRedEyeOutlinedIcon/> : <VisibilityOffOutlinedIcon/>}
+                            </button>
+                        </div>
+                    </div>
 
-                <div>
+                <div  className="form-section">
                     <label htmlFor="password">Confirmar senha:</label>
-                    <input placeholder="Senha" type="password" id="confirmpassword" name="confirmpassword" required />
+                    <input className="input-field" placeholder="Senha" type={showPassword ? "text" : "password"} id="confirmpassword" name="confirmpassword" required />
                 </div>
                 <button className="btn-login-form" type="submit">
-                    Sign in
+                    Registre-se
                 </button>
             </form>
             <p>{warningRegister}</p>
-            <div>
-                <p>Já possui uma conta?</p>
-                <Link to="/">Login</Link>
+            <div className="footer-form-login">
+                <p className="text-register">Já possui uma conta?</p>
+                <Link to="/"> Login</Link>
+            </div>
+            </div>
             </div>
         </>
     );
