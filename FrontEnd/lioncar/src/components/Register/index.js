@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './register.css'
 import Db from '../../DB'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
@@ -9,6 +9,8 @@ export default function Register(props) {
 
     const [warningRegister, setWarningRegister] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -26,7 +28,7 @@ export default function Register(props) {
 
         console.log('$$$');
         const formUser = new FormData(e.target);
-        const formName = e.target.name.value;
+        const formName = e.target.username.value;
         const formEmail = e.target.email.value;
         const formPassword = e.target.password.value;
         const formConfirmPassword = e.target.confirmpassword.value;
@@ -55,7 +57,8 @@ export default function Register(props) {
                     userData[key] = value;
                 }
             });
-            Db.postUser(userData);
+            Db.postUser(userData).then(() =>navigate("/"));
+            
         }
     };
 
@@ -73,7 +76,8 @@ export default function Register(props) {
                         type="text"
                         maxLength="20"
                         placeholder="Nome do usuário"
-                        name="name"
+                        name="username"
+                        id = "username"
                     />
                 </div>
                 <div  className="form-section">

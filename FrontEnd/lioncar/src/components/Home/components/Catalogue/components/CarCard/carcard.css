@@ -1,0 +1,32 @@
+:root{
+    --font-size-pattern: 15px;
+}
+
+.main-car-card{
+    font-family: 'Roboto';
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    margin: 5px;
+}
+
+.Marca{
+    font-size: var(--font-size-pattern);
+}
+
+.Modelo{
+    font-size: var(--font-size-pattern);
+    font-weight: bold;
+}
+
+.AnoModelo{
+    font-size: var(--font-size-pattern);
+}
+
+.Fipe{
+    font-size: var(--font-size-pattern);
+}

@@ -1,0 +1,11 @@
+.catalogue-section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.catalogue-title{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+}
