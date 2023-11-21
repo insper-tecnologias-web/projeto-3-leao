@@ -46,6 +46,7 @@ def api_user(request):
         username = request.data['username']
         email = request.data['email']
         password = request.data['password']
+        print(password)
 
         user = User.objects.create_user(username, email, password)
         user.save()
@@ -57,13 +58,14 @@ def api_get_token(request):
         if request.method == 'POST':
             username = request.data['username']
             password = request.data['password']
+            print(password)
             user = authenticate(username=username, password=password)
 
             if user is not None:
                 token, created = Token.objects.get_or_create(user=user)
                 return JsonResponse({"token":token.key})
             else:
-                return HttpResponseForbidden()
+                return JsonResponse({"token":None})
     except:
         return HttpResponseForbidden()
     

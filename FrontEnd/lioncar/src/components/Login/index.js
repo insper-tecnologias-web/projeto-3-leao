@@ -18,24 +18,30 @@ export default function Login(props) {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        const formEmail = e.target.email.value;
+        //const formEmail = e.target.email.value;
+        const formUserName = e.target.username.value;
         const formPassword = e.target.password.value;
+        const formGetToken = {
+            "username": formUserName,
+            "password": formPassword
+        };
+        const token = await Db.getToken(formGetToken);
         const DBusers = await Db.getUsers();
-        const filteredUser = DBusers.find((user) => user.email === formEmail);
+        const filteredUser = DBusers.find((user) => user.email === formUserName);
+        console.log(token);
+        
 
-        if (!filteredUser) {
-            setWarningLogin('Usuário nao encontrado');
+        if (!token) {
+            setWarningLogin('Usuário ou senha incorretos');
             setWarningColor('red');
+            
         } else {
-            if (formPassword !== filteredUser.password) {
-                setWarningLogin('Senha incorreta');
-                setWarningColor('red');
-            } else {
+                console.log(token);
                 setWarningLogin('Senha correta');
                 setWarningColor('green');
                 navigate("home");
             }
-        }
+        
     };
 
     return (
@@ -45,8 +51,8 @@ export default function Login(props) {
                 <p className="login-section-title">Faça seu login</p>
                 <form encType="multipart/form-data" onSubmit={handlePost}>
                     <div className="form-section">
-                        <label htmlFor="email">Digite seu email:</label>
-                        <input className="input-field" placeholder="Email" type="email" id="email" name="email" required />
+                        <label htmlFor="email">Digite seu username:</label>
+                        <input className="input-field" placeholder="Username" id="username" name="username" required />
                     </div>
                     <div className="form-section">
                         <label htmlFor="password">Digite sua senha:</label>
