@@ -7,14 +7,16 @@ function Catalogue() {
 
     return (
         <div className="catalogue-div">
-            <p className="catalogue-title">Carros publicados</p>
-            <section className="catalogue-section">
-                <CarCard></CarCard>
-                <CarCard></CarCard>
-                <CarCard></CarCard>
-                <CarCard></CarCard>
-                <CarCard></CarCard>
-            </section>
+            <div>
+                <p className="catalogue-title">Carros publicados</p>
+                <section className="catalogue-section">
+                    <CarCard></CarCard>
+                    <CarCard></CarCard>
+                    <CarCard></CarCard>
+                    <CarCard></CarCard>
+                    <CarCard></CarCard>
+                </section>
+            </div>
         </div>
 
     )

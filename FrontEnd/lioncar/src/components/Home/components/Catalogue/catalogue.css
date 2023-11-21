@@ -1,7 +1,17 @@
+.catalogue-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
 .catalogue-section{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 500px;
+    
 }
 
 .catalogue-title{

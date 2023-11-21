@@ -30,7 +30,6 @@ export default function Login(props) {
         const filteredUser = DBusers.find((user) => user.email === formUserName);
         console.log(token);
         
-
         if (!token) {
             setWarningLogin('Usuário ou senha incorretos');
             setWarningColor('red');
