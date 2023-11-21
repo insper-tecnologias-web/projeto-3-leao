@@ -12,3 +12,12 @@ Na Lion Car, acreditamos que a alegria de dirigir deve começar desde o momento 
 E quando você encontrar o carro dos seus sonhos ou fechar um negócio incrível, solte um vibrante "LEÃOOOOOOO!" para celebrar conosco. Afinal, a Lion Car não é apenas sobre carros; é sobre paixão, desempenho e alegria contagiante.
 
 Então, mergulhe na experiência Lion Car - onde a busca pelo seu carro perfeito se transforma em uma emocionante aventura. Compre e venda seu carro com o Leão e deixe-nos ser a força motriz por trás dos seus momentos inesquecíveis sobre quatro rodas! 🦁🚗
+
+
+________________________________________________________________________________________________-
+
+Sprints:
+
+- Sprint 1: Início do projeto (Infraestrutura Backend e Modelos) e telas iniciais (Login e Registro);
+
+- Sprint 2: Login com a autenticação do Django Rest, POST de carros pelo usuário;
