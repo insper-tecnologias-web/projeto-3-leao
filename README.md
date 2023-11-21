@@ -1,5 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/Jt8DU81q)
 
+# LION CAR
 
 Bem-vindo à Lion Car, o destino definitivo para entusiastas de automóveis que buscam uma experiência excepcional ao comprar e vender carros! Somos mais do que um site de comércio de veículos, somos a selva onde seu sonho automotivo se torna realidade. Com o rugido poderoso da confiabilidade e a agilidade de um leão, a Lion Car está aqui para transformar sua jornada automotiva.
 
@@ -14,9 +15,11 @@ E quando você encontrar o carro dos seus sonhos ou fechar um negócio incrível
 Então, mergulhe na experiência Lion Car - onde a busca pelo seu carro perfeito se transforma em uma emocionante aventura. Compre e venda seu carro com o Leão e deixe-nos ser a força motriz por trás dos seus momentos inesquecíveis sobre quatro rodas! 🦁🚗
 
 
-________________________________________________________________________________________________-
 
-Sprints:
+
+
+
+## Sprints:
 
 - Sprint 1: Início do projeto (Infraestrutura Backend e Modelos) e telas iniciais (Login e Registro);
 
