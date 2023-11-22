@@ -6,7 +6,7 @@ export default function Home(props) {
 
     return (
         <>
-            <Header></Header>
+            <Header username="Leão"></Header>
             <Catalogue></Catalogue>
         </>
     );

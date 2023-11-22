@@ -1,23 +1,37 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./head.css";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+function Head(props) {
+    const navigate = useNavigate();
 
-function Head() {
+    // Agora, forneça o caminho completo para a navegação
+    const goToUser = () => {
+        navigate("/user");
+    }
 
     return (
         <>
-            <header class="site-header">
-                <div class="aa">
-                    <h1 class="site-title">Lion Cars</h1>
+            <header className="site-header">
+                <div className="aa">
+                    <h1 className="site-title">Lion Cars</h1>
                 </div>
-                <nav class="main-nav">
+                <nav className="main-nav">
                     <ul>
                         <li><a href="http://10.102.8.95:3000/home">Home</a></li>
-                        <li><a href="http://10.102.8.95:3000/home">Publishied Cars</a></li>
+                        <li><a href="http://10.102.8.95:3000/home">Published Cars</a></li>
                     </ul>
                 </nav>
+                <div className="user">
+                    <h2 className="user-name">Olá, {props.username}</h2>
+                    <button className="user-button" type="button" onClick={goToUser}>
+                        <AccountCircleIcon />
+                    </button>
+                </div>
             </header>
         </>
     )
 }
+
 export default Head;

@@ -2,16 +2,41 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between; /* Isso alinhará os elementos à esquerda e à direita */
+  align-items: center; /* Isso centralizará verticalmente os elementos */
+}
+
+.user {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .site-title {
   font-size: 36px;
 }
 
+.user-name{
+  margin-right: 6px;
+}
+
+.user-button{
+  margin-left: 8px;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 0px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .main-nav ul {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 
 .main-nav li {
@@ -25,7 +50,7 @@
 }
 
 .main-nav a:hover {
-  color: #ff9900;
+  color: #81F3FF;
 }
 
 .logo {
@@ -33,6 +58,7 @@
   height: 100px;
   padding-right: 5px;
 }
+
 .aa {
   display: flex;
   align-items: center;
