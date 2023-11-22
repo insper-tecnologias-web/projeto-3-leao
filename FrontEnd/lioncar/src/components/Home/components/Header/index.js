@@ -11,6 +11,10 @@ function Head(props) {
         navigate("/user");
     }
 
+    const goToAbout = () => {
+        navigate("/about");
+    }
+
     return (
         <>
             <header className="site-header">
@@ -21,6 +25,7 @@ function Head(props) {
                     <ul>
                         <li><a href="http://10.102.8.95:3000/home">Home</a></li>
                         <li><a href="http://10.102.8.95:3000/home">Published Cars</a></li>
+                        <li><a onClick={goToAbout}>About</a></li>
                     </ul>
                 </nav>
                 <div className="user">

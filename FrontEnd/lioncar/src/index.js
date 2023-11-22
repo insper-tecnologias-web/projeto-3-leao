@@ -8,6 +8,7 @@ import Register from './components/Register';
 import Home from './components/Home';
 import User from './components/User';
 import Publish from './components/Publish';
+import About from './components/About';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "publish",
     element: <Publish />,
+  },
+  {
+    path: "about",
+    element: <About />,
   }
 ]);
 
