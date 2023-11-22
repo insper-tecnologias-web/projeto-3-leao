@@ -38,7 +38,8 @@ export default function Login(props) {
                 console.log(token);
                 setWarningLogin('Senha correta');
                 setWarningColor('green');
-                navigate("home");
+                navigate("home", { state: { username: filteredUser.username } });
+                navigate("user", { state: { user: filteredUser } });
             }
         
     };
