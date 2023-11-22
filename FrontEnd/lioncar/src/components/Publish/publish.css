@@ -1,0 +1,28 @@
+/* publish.css */
+
+.publish-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .publish-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .back-button {
+    background-color: #e5e1e1;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #81F3FF;
+  }
+  

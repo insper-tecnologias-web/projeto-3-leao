@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Home from './components/Home';
 import User from './components/User';
+import Publish from './components/Publish';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     path: "user",
     element: <User />,
   },
+  {
+    path: "publish",
+    element: <Publish />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
