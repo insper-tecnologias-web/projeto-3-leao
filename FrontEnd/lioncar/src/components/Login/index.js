@@ -26,8 +26,8 @@ export default function Login(props) {
             "password": formPassword
         };
         const token = await Db.getToken(formGetToken);
-        const DBusers = await Db.getUsers();
-        const filteredUser = DBusers.find((user) => user.username === formUserName);
+        //const DBusers = await Db.getUsers();
+        //const filteredUser = DBusers.find((user) => user.username === formUserName);
         console.log(token);
         
         if (!token) {

@@ -16,27 +16,13 @@ export default function Register(props) {
         setShowPassword(!showPassword);
     };
 
-    const checkUserExistenceInDB = async (formEmail) => {
-        const DBusers = await Db.getUsers();
-        const userExists = DBusers.some((user) => user.email === formEmail);
-        console.log(userExists);
-        return userExists;
+    const checkUserExistenceInDB = async (formEmail,username) => {
+        const exists = await Db.checkUserExistence(formEmail, username);
+        return exists
     };
 
     const handlePost = async (e) => {
         e.preventDefault();
-
-        const goToUser = () => {
-            navigate("/user");
-        }
-    
-        const goToAbout = () => {
-            navigate("/about");
-        }
-    
-        const goToHome = () => {
-            navigate("/home");
-        }
 
         console.log('$$$');
         const formUser = new FormData(e.target);
@@ -44,6 +30,9 @@ export default function Register(props) {
         const formEmail = e.target.email.value;
         const formPassword = e.target.password.value;
         const formConfirmPassword = e.target.confirmpassword.value;
+        const user_exists = await checkUserExistenceInDB(formEmail,formName)
+        console.log("AAAAAAAAAAA")
+        console.log(user_exists)
 
         if (formName.length <= 0) {
             setWarningRegister('Insira um nome');
@@ -57,8 +46,11 @@ export default function Register(props) {
         else if (formPassword !== formConfirmPassword) {
             setWarningRegister('Senhas diferentes');
         }
-        else if (checkUserExistenceInDB(formEmail) === true) {
+        else if (user_exists.email_exists) {
             setWarningRegister('Este email já foi cadastrado');
+        }
+        else if (user_exists.username_exists) {
+            setWarningRegister('Este Username já foi cadastrado');
         }
         else {
             setWarningRegister('Usuário cadastrado!');
@@ -114,7 +106,7 @@ export default function Register(props) {
                     Registre-se
                 </button>
             </form>
-            <p>{warningRegister}</p>
+            <p className="warningLogin" style={{ color: 'red' }}>{warningRegister}</p>
             <div className="footer-form-login">
                 <p className="text-register">Já possui uma conta?</p>
                 <Link to="/"> Login</Link>

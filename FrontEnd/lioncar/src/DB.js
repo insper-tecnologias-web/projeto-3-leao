@@ -36,7 +36,23 @@ const Db = {
         axios.post(`${API_BASE}${endpoint}`,formUser)
         .then((response)=>{console.log(response)})
         .catch((error)=>console.log(error))
+    },
+
+    checkUserExistence: async (email,username) => {
+        const endpoint = 'api/checkuserexistence';
+
+        try {
+            const response = await axios.get(`${API_BASE}/${endpoint}`, {
+                params: { email: email, username:username }
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao buscar dados:", error);
+            return null;
+        }
     }
+
 
 
 };

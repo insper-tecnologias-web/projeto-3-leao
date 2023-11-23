@@ -9,8 +9,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 
 
-
 from .models import Car, User
+
 
 def index(request):
     return HttpResponse("Olá mundo! Este é o app LEÃOOOOO")
@@ -28,7 +28,8 @@ def api_cars(request):
         year = new_car_data['year']
         fuel = new_car_data['fuel']
         fipeCode = new_car_data['fipeCode']
-        car = Car(user=user, price=price, brand=brand, model=model, year=year, fuel=fuel, fipeCode=fipeCode)
+        car = Car(user=user, price=price, brand=brand, model=model,
+                  year=year, fuel=fuel, fipeCode=fipeCode)
         car.save()
 
     cars = Car.objects.all()
@@ -36,7 +37,8 @@ def api_cars(request):
     serialized_car = CarSerializer(cars, many=True)
     return Response(serialized_car.data)
 
-@api_view(['GET','POST'])
+
+@api_view(['GET', 'POST'])
 def api_user(request):
     if request.method == 'GET':
         users = User.objects.all()
@@ -52,6 +54,7 @@ def api_user(request):
         user.save()
         return Response(status=204)
 
+
 @api_view(['POST'])
 def api_get_token(request):
     try:
@@ -63,11 +66,20 @@ def api_get_token(request):
 
             if user is not None:
                 token, created = Token.objects.get_or_create(user=user)
-                return JsonResponse({"token":token.key})
+                return JsonResponse({"token": token.key})
             else:
-                return JsonResponse({"token":None})
+                return JsonResponse({"token": None})
     except:
         return HttpResponseForbidden()
-    
 
-    
+
+@api_view(['GET'])
+def checkUserExistence(request):
+    if request.method == 'GET':
+        email = request.query_params.get('email', '')
+        username = request.query_params.get('username', '')
+        email_exists = User.objects.filter(email=email).exists()
+        username_exists = User.objects.filter(username=username).exists()
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+        return Response({'email_exists': email_exists, 'username_exists': username_exists})
