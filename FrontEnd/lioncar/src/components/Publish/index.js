@@ -1,142 +1,206 @@
 import React, { useState } from 'react';
-import './publish.css'; 
-import { Link, useNavigate } from 'react-router-dom';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import './publish.css';
+import API from '../../API';
 
 const Publish = (props) => {
-    const navigate = useNavigate();
 
-    const handleBackClick = () => {
-        navigate('/home'); 
-    };
+    const tipos = ['carros', 'motos', 'caminhoes'];
+    const [tipoSelecionado, setTipoSelecionado] = useState(null);
 
-    const goToUser = () => {
-        navigate("/user");
+    const [marcas, setMarcas] = useState(null);
+    const [marcaSelecionada, setMarcaSelecionada] = useState(null);
+
+    const [modelos, setModelos] = useState(null);
+    const [modeloSelecionado, setModeloSelecionado] = useState(null);
+
+    const [anos, setAnos] = useState(null);
+    const [valor, setValor] = useState(null);
+
+    const [warning, setWarning] = useState(null);
+    const [warningColor, setWarningColor] = useState('red');
+
+    const checkForm = (formDic) => {
+        for (const chave in formDic) {
+            const valor = formDic[chave];
+            if (valor.length === 0) {
+                setWarning(`Preencha o campo de ${chave}`)
+                return false
+            }
+        }
+        return true
     }
-
-    const goToAbout = () => {
-        navigate("/about");
-    }
-
-    const goToHome = () => {
-        navigate("/home");
-    }
-
-    // Estado para armazenar os dados do carro e o status de publicação
-    const [carInfo, setCarInfo] = useState({
-        brand: '',
-        model: '',
-        version: '',
-        year: '',
-        price: '',
-    });
-
-    const [isPublished, setIsPublished] = useState(false);
-
-    // Manipuladores de evento para atualizar o estado com os dados do formulário
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setCarInfo((prevInfo) => ({
-            ...prevInfo,
-            [name]: value,
-        }));
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Lógica para lidar com a submissão do formulário, por exemplo, enviar para o backend
-        console.log('Dados do Carro:', carInfo);
-        setIsPublished(true);
+        const formData = new FormData(e.target);
+        const formDataObject = {};
+        formData.forEach((value, key) => {
+            formDataObject[key] = value;
+        });
+        setWarningColor('red');
+        if (checkForm(formDataObject)){
+            setWarningColor('green');
+            setWarning('Veículo postado!')
+        }
+    };
+
+    const handleMudancaTipo = async (e) => {
+        const tipo = e.target.value;
+        if (tipo) {
+            setTipoSelecionado(tipo);
+            const marcas = await API.getMarcas(tipo);
+            setMarcas(marcas)
+        } else {
+            setTipoSelecionado(null);
+            setMarcas(null);
+        }
+        setMarcaSelecionada(null);
+        setModelos(null);
+        setModeloSelecionado(null)
+        setAnos(null);
+        setValor(null);
+    };
+
+    const handleMudancaMarca = async (e) => {
+        const marca = e.target.value;
+        if (marca) {
+            setMarcaSelecionada(marca);
+            const modelos = await API.getModelos(tipoSelecionado, marca);
+            setModelos(modelos.modelos);
+        } else {
+            setMarcaSelecionada(null);
+            setModelos(null);
+        }
+        setModeloSelecionado(null);
+        setAnos(null);
+        setValor(null);
+    };
+
+    const handleMudancaModelo = async (e) => {
+        const modelo = e.target.value;
+        if (modelo) {
+            setModeloSelecionado(modelo);
+            const anos = await API.getAnos(tipoSelecionado, marcaSelecionada, modelo);
+            setAnos(anos);
+        } else {
+            setAnos(null);
+            setModeloSelecionado(null);
+        }
+        setValor(null);
+    };
+
+    const handleMudancaAno = async (e) => {
+        const ano = e.target.value;
+        if (ano) {
+            const v = await API.getValor(tipoSelecionado, marcaSelecionada, modeloSelecionado, ano);
+            setValor(v.Valor);
+        } else {
+            setValor(null);
+        }
     };
 
     return (
         <>
-             <header className="site-header">
-                <div className="aa">
-                    <h1 className="site-title">Lion Cars</h1>
+            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+
+                <div>
+                    <label htmlFor="tipo">Tipo do veículo:</label>
+                    <select name="tipo" onChange={handleMudancaTipo}>
+                        <option value={''}>
+                            {'---'}
+                        </option>
+                        {tipos.map((tipo, index) => (
+                            <option key={`node_id_${index}`} value={tipo}>
+                                {tipo}
+                            </option>
+                        ))}
+                    </select>
                 </div>
-                <nav className="main-nav">
-                    <ul>
-                        <li><a onClick={goToHome}>Home</a></li>
-                        <li><a onClick={goToHome}>Published Cars</a></li>
-                        <li><a onClick={goToAbout}>About</a></li>
-                    </ul>
-                </nav>
-                <div className="user">
-                    <h2 className="user-name">Olá, {props.username}</h2>
-                    <button className="user-button" type="button" onClick={goToUser}>
-                        <AccountCircleIcon />
-                    </button>
+
+                <div>
+                    <label htmlFor="marca">Marca do veículo:</label>
+                    <select name="marca" onChange={handleMudancaMarca}>
+                        <option value={''}>
+                            {'---'}
+                        </option>
+                        {marcas ? (
+                            marcas.map((marca) => (
+                                <option key={`node_id_${marca.codigo}`} value={marca.codigo}>
+                                    {marca.nome}
+                                </option>
+                            ))
+                        ) : null}
+                    </select>
                 </div>
-            </header>
-            <h1 className="publish-title">
-                {!isPublished ? "Publicar Carro" : "Carro Publicado com Sucesso!"}
-            </h1>
-            <div className="publish-container">
-                {!isPublished ? (
-                    <form onSubmit={handleSubmit} className='form'>
-                        <label className='label'>
-                            Marca:
-                            <input
-                                className='input'
-                                type="text"
-                                name="brand"
-                                value={carInfo.brand}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <label className='label'>
-                            Modelo:
-                            <input
-                                className='input'
-                                type="text"
-                                name="model"
-                                value={carInfo.model}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <label className='label'>
-                            Versão:
-                            <input
-                                className='input'
-                                type="text"
-                                name="version"
-                                value={carInfo.version}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <label className='label'>
-                            Ano:
-                            <input
-                                className='input'
-                                type="text"
-                                name="year"
-                                value={carInfo.year}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <label className='label'>
-                            Preço:
-                            <input
-                                className='input'
-                                type="text"
-                                name="price"
-                                value={carInfo.price}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <button type="submit" className="back-button">
-                            Publicar Carro
-                        </button>
-                    </form>
-                ) : (
-                    
-                    <img src="images/pub.jpeg" alt="Carro Publicado" className="publish-image" />
-                )}
-                <button className="back-button2" onClick={handleBackClick}>
-                    Voltar para Home
+
+
+                <div>
+                    <label htmlFor="modelo">Modelo do veículo:</label>
+                    <select name="modelo" onChange={handleMudancaModelo}>
+                        <option value={''}>
+                            {'---'}
+                        </option>
+                        {modelos ? (
+                            modelos.map((modelo) => (
+                                <option key={`node_id_${modelo.codigo}`} value={modelo.codigo}>
+                                    {modelo.nome}
+                                </option>
+                            ))
+                        ) : null}
+                    </select>
+                </div>
+
+                <div>
+                    <label htmlFor="ano">Ano do veículo:</label>
+                    <select name="ano" onChange={handleMudancaAno}>
+                        <option value={''}>
+                            {'---'}
+                        </option>
+                        {anos ? (
+                            anos.map((ano) => (
+                                <option key={`node_id_${ano.codigo}`} value={ano.codigo}>
+                                    {ano.nome}
+                                </option>
+                            ))
+                        ) : null}
+                    </select>
+                </div>
+
+                <div>
+                    <label className="label" htmlFor="preco">Preço do vendedor (R$):</label>
+                    <input
+                        type="number"
+                        placeholder="Preço a venda"
+                        name="preco"
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor="descricao">Descrição:</label>
+                    <textarea
+                        type="text"
+                        maxLength="1000"
+                        placeholder="Descrição"
+                        name="descricao"
+                    />
+                </div>
+
+                {valor ? (
+                    <div>
+                        <p>Preço FIPE: {valor}</p>
+                    </div>
+                ) : null}
+
+                <button className="btn-form" type="submit">
+                    PUBLICAR CARRO
                 </button>
-            </div>
+
+            </form>
+
+            {warning ? (
+                <p style={{color: warningColor}}>{warning}</p>
+            ) : null}
+
         </>
     );
 };

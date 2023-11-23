@@ -21,9 +21,6 @@ function Head(props) {
     return (
         <>
             <header className="site-header">
-                <div className="aa">
-                    <h1 className="site-title">Lion Cars</h1>
-                </div>
                 <nav className="main-nav">
                     <ul>
                         <li><a onClick={goToHome}>Home</a></li>
@@ -31,6 +28,9 @@ function Head(props) {
                         <li><a onClick={goToAbout}>About</a></li>
                     </ul>
                 </nav>
+                <div className="aa">
+                    <h1 className="site-title">Lion Cars</h1>
+                </div>
                 <div className="user">
                     <h2 className="user-name">Olá, {props.username}</h2>
                     <button className="user-button" type="button" onClick={goToUser}>
