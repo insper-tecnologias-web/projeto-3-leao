@@ -24,15 +24,12 @@ export default function Register(props) {
     const handlePost = async (e) => {
         e.preventDefault();
 
-        console.log('$$$');
         const formUser = new FormData(e.target);
         const formName = e.target.username.value;
         const formEmail = e.target.email.value;
         const formPassword = e.target.password.value;
         const formConfirmPassword = e.target.confirmpassword.value;
         const user_exists = await checkUserExistenceInDB(formEmail,formName)
-        console.log("AAAAAAAAAAA")
-        console.log(user_exists)
 
         if (formName.length <= 0) {
             setWarningRegister('Insira um nome');
@@ -56,7 +53,6 @@ export default function Register(props) {
             setWarningRegister('Usuário cadastrado!');
             const userData = {};
             formUser.forEach((value, key) => {
-                console.log(key);
                 if (key !== 'confirmpassword') {
                     userData[key] = value;
                 }

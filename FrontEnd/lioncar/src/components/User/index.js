@@ -1,10 +1,10 @@
 import React from 'react';
 import "./user.css";
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 
 const User = (props) => {
-  const { user } = props.location?.state || {}; // Se não houver dados de usuário, use um objeto vazio como padrão
+  //const { user } = props.location?.state || {}; // Se não houver dados de usuário, use um objeto vazio como padrão
   const navigate = useNavigate();
 
   const handleBackClick = () => {
