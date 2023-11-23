@@ -27,7 +27,7 @@ export default function Login(props) {
         };
         const token = await Db.getToken(formGetToken);
         const DBusers = await Db.getUsers();
-        const filteredUser = DBusers.find((user) => user.email === formUserName);
+        const filteredUser = DBusers.find((user) => user.username === formUserName);
         console.log(token);
         
         if (!token) {
@@ -38,8 +38,8 @@ export default function Login(props) {
                 console.log(token);
                 setWarningLogin('Senha correta');
                 setWarningColor('green');
-                navigate("home", { state: { username: filteredUser.username } });
-                navigate("user", { state: { user: filteredUser } });
+                navigate("home"/* , { state: { username: filteredUser.username } } */);
+                //navigate("user", { state: { user: filteredUser } });
             }
         
     };
