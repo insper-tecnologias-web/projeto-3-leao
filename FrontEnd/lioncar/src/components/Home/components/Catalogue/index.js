@@ -17,7 +17,7 @@ function Catalogue() {
             </section>
 
             {/* Botão para a página de publicação */}
-            <Link to="/publish" className="publish-button">
+            <Link to="/publish" className="publish-button" >
                 <PublishIcon />
             </Link>
         </div>

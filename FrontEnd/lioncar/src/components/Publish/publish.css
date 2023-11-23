@@ -1,17 +1,64 @@
 /* publish.css */
 
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.label {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 3px;
+}
+
+.input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #F0F0F0;
+    border: none;
+    padding-left: 10px;
+}
+
 .publish-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
-  .publish-title {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Adicionado para centralizar o texto */
+}
+
+.publish-title {
     font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .back-button {
+    margin-bottom: 0px;
+    text-align: center; /* Adicionado para centralizar o texto */
+    margin-top: 30px;
+}
+
+.back-button {
+    background-color: #e5e1e1;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-bottom: 100px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #81F3FF;
+}
+
+.back-button2 {
     background-color: #e5e1e1;
     color: #333;
     border: none;
@@ -20,9 +67,15 @@
     margin-top: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .back-button:hover {
+
+}
+
+.back-button2:hover {
     background-color: #81F3FF;
-  }
-  
+}
+
+.publish-image {
+    height: 500px;
+    margin: 0 auto;
+    display: block;
+}
