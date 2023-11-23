@@ -38,7 +38,7 @@ const Publish = (props) => {
             formDataObject[key] = value;
         });
         setWarningColor('red');
-        if (checkForm(formDataObject)){
+        if (checkForm(formDataObject)) {
             setWarningColor('green');
             setWarning('Veículo postado!')
         }
@@ -100,12 +100,15 @@ const Publish = (props) => {
     };
 
     return (
-        <>
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+        <div className='main'>
+            <img className="publisher-img" src='images/login.png' alt="Logo Lion Car" />
+            <form className='from-publisher' encType="multipart/form-data" onSubmit={handleSubmit}>
 
-                <div>
+                <p className='form-section-title'>Publique um veículo!</p>
+
+                <div className='input-section'>
                     <label htmlFor="tipo">Tipo do veículo:</label>
-                    <select name="tipo" onChange={handleMudancaTipo}>
+                    <select className='inputOption' name="tipo" onChange={handleMudancaTipo}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -117,9 +120,9 @@ const Publish = (props) => {
                     </select>
                 </div>
 
-                <div>
+                <div className='input-section'>
                     <label htmlFor="marca">Marca do veículo:</label>
-                    <select name="marca" onChange={handleMudancaMarca}>
+                    <select className='inputOption' name="marca" onChange={handleMudancaMarca}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -134,9 +137,9 @@ const Publish = (props) => {
                 </div>
 
 
-                <div>
+                <div className='input-section'>
                     <label htmlFor="modelo">Modelo do veículo:</label>
-                    <select name="modelo" onChange={handleMudancaModelo}>
+                    <select className='inputOption' name="modelo" onChange={handleMudancaModelo}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -150,9 +153,9 @@ const Publish = (props) => {
                     </select>
                 </div>
 
-                <div>
+                <div className='input-section'>
                     <label htmlFor="ano">Ano do veículo:</label>
-                    <select name="ano" onChange={handleMudancaAno}>
+                    <select className='inputOption' name="ano" onChange={handleMudancaAno}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -166,18 +169,27 @@ const Publish = (props) => {
                     </select>
                 </div>
 
-                <div>
+                {valor ? (
+                    <div>
+                        <p>Preço FIPE: {valor}</p>
+                    </div>
+                ) : null}
+
+                <div className='input-section'>
                     <label className="label" htmlFor="preco">Preço do vendedor (R$):</label>
                     <input
+                        className='inputField'
                         type="number"
                         placeholder="Preço a venda"
                         name="preco"
                     />
                 </div>
 
-                <div>
+                <div className='input-section'>
                     <label htmlFor="descricao">Descrição:</label>
                     <textarea
+                        id='descricao'
+                        className='inputField'
                         type="text"
                         maxLength="1000"
                         placeholder="Descrição"
@@ -185,23 +197,17 @@ const Publish = (props) => {
                     />
                 </div>
 
-                {valor ? (
-                    <div>
-                        <p>Preço FIPE: {valor}</p>
-                    </div>
-                ) : null}
-
-                <button className="btn-form" type="submit">
-                    PUBLICAR CARRO
-                </button>
+                <div>
+                    <button className="btn-submit-form" type="submit">
+                        PUBLICAR VEÍCULO
+                    </button>
+                    <p className='warning' style={{ color: warningColor }}>{warning}</p>
+                </div>
 
             </form>
 
-            {warning ? (
-                <p style={{color: warningColor}}>{warning}</p>
-            ) : null}
 
-        </>
+        </div>
     );
 };
 
