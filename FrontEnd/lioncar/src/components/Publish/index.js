@@ -51,8 +51,23 @@ const Publish = (props) => {
 
     return (
         <>
-            <header className="site-header">
-                {/* ... (mesmo como antes) */}
+             <header className="site-header">
+                <div className="aa">
+                    <h1 className="site-title">Lion Cars</h1>
+                </div>
+                <nav className="main-nav">
+                    <ul>
+                        <li><a onClick={goToHome}>Home</a></li>
+                        <li><a onClick={goToHome}>Published Cars</a></li>
+                        <li><a onClick={goToAbout}>About</a></li>
+                    </ul>
+                </nav>
+                <div className="user">
+                    <h2 className="user-name">Olá, {props.username}</h2>
+                    <button className="user-button" type="button" onClick={goToUser}>
+                        <AccountCircleIcon />
+                    </button>
+                </div>
             </header>
             <h1 className="publish-title">
                 {!isPublished ? "Publicar Carro" : "Carro Publicado com Sucesso!"}

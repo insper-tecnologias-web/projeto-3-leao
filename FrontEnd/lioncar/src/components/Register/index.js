@@ -26,6 +26,18 @@ export default function Register(props) {
     const handlePost = async (e) => {
         e.preventDefault();
 
+        const goToUser = () => {
+            navigate("/user");
+        }
+    
+        const goToAbout = () => {
+            navigate("/about");
+        }
+    
+        const goToHome = () => {
+            navigate("/home");
+        }
+
         console.log('$$$');
         const formUser = new FormData(e.target);
         const formName = e.target.username.value;

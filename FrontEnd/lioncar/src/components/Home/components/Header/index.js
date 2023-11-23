@@ -6,7 +6,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function Head(props) {
     const navigate = useNavigate();
 
-    // Agora, forneça o caminho completo para a navegação
     const goToUser = () => {
         navigate("/user");
     }
