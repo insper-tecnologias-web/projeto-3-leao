@@ -176,7 +176,7 @@ const Publish = (props) => {
                 ) : null}
 
                 <div className='input-section'>
-                    <label className="label" htmlFor="preco">Preço do vendedor (R$):</label>
+                    <label className="label" htmlFor="preco">Preço do vendedor em reais (R$):</label>
                     <input
                         className='inputField'
                         type="number"
