@@ -16,10 +16,9 @@ const About = (props) => {
         navigate("/user");
     }
 
-    const goToAbout = () => {
-        navigate("/about");
+    const goToFeedback = () => {
+        navigate("/feedback");
     }
-
     const goToHome = () => {
         navigate("/home");
     }
@@ -34,7 +33,7 @@ const About = (props) => {
             <ul>
                 <li><a onClick={goToHome}>Home</a></li>
                 <li><a onClick={goToHome}>Published Cars</a></li>
-                <li><a onClick={goToAbout}>About</a></li>
+                <li><a onClick={goToFeedback}>Feedback</a></li>
             </ul>
         </nav>
         <div className="user">

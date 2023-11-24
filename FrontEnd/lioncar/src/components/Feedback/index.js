@@ -12,6 +12,7 @@ const Feedback = (props) => {
 
     const navigate = useNavigate();
 
+
     const handleBackClick = () => {
         navigate('/home'); // Navegar de volta para a página Home
     };
