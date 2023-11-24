@@ -69,3 +69,75 @@
     border-radius: 10px; 
     margin-top: 20px; 
 }
+
+.site-header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .user {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .site-title {
+    font-size: 36px;
+  }
+  
+  .user-name {
+    margin-right: 6px;
+  }
+  
+  .user-button {
+    margin-left: 8px;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 0px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .user-button:hover {
+    color: #81F3FF; 
+  }
+  
+  .main-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .main-nav li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .main-nav a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .main-nav a:hover {
+    color: #81F3FF;
+  }
+  
+  .logo {
+    width: 44.5px;
+    height: 100px;
+    padding-right: 5px;
+  }
+  
+  .aa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
