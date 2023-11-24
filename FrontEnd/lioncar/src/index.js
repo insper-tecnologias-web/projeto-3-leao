@@ -9,6 +9,7 @@ import Home from './components/Home';
 import User from './components/User';
 import Publish from './components/Publish';
 import About from './components/About';
+import Feedback from './components/Feedback';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "about",
     element: <About />,
+  },
+  {
+    path: "feedback",
+    element: <Feedback />,
   }
 ]);
 
