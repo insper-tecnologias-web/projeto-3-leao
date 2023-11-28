@@ -23,30 +23,24 @@ function Head(props) {
     }
 
     return (
-        <>
-            <header className="site-header">
-                <div className="main-header">
-                    <div className="aa">
-                        <a onClick={goToHome}>
-                            <h1 className="site-title">Lion Cars</h1>
-                        </a>
-                    </div>
-                    <nav className="main-nav">
-                        <ul>
-                            <li><a onClick={goToHome}>Published Cars</a></li>
-                            <li><a onClick={goToAbout}>About</a></li>
-                            <li><a onClick={goToFeedback}>Feedback</a></li>
-                        </ul>
-                    </nav>
+        <header className="site-header">
+                <div className="aa">
+                    <h1 className="site-title">Lion Cars</h1>
                 </div>
-                <div className="user-camp">
-                    <h2 className="user-name">Olá, {props.username}</h2>
-                    <button className="user-button" type="button" onClick={goToUser}>
+                <nav className="main-nav">
+                    <ul>
+                        <li><a onClick={() => navigate('/home')}>Home</a></li>
+                        <li><a onClick={() => navigate('/home')}>Published Cars</a></li>
+                        <li><a onClick={() => navigate('/about')}>About</a></li>
+                    </ul>
+                </nav>
+                <div className="user">
+                    <h2 className="user-name">Olá, Leão</h2>
+                    <button className="user-button" type="button" onClick={() => navigate("/user")}>
                         <AccountCircleIcon />
                     </button>
                 </div>
             </header>
-        </>
     )
 }
 
