@@ -18,7 +18,6 @@ export default function Login(props) {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        //const formEmail = e.target.email.value;
         const formUserName = e.target.username.value;
         const formPassword = e.target.password.value;
         const formGetToken = {
@@ -26,22 +25,16 @@ export default function Login(props) {
             "password": formPassword
         };
         const token = await Db.getToken(formGetToken);
-        //const DBusers = await Db.getUsers();
-        //const filteredUser = DBusers.find((user) => user.username === formUserName);
-        console.log(token);
         
         if (!token) {
             setWarningLogin('Usuário ou senha incorretos');
             setWarningColor('red');
             
         } else {
-                console.log(token);
                 setWarningLogin('Senha correta');
                 setWarningColor('green');
-                navigate("home"/* , { state: { username: filteredUser.username } } */);
-                //navigate("user", { state: { user: filteredUser } });
+                navigate("home", { state: { token, formUserName } });
             }
-        
     };
 
     return (
