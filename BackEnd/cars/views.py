@@ -82,3 +82,16 @@ def checkUserExistence(request):
         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
         return Response({'email_exists': email_exists, 'username_exists': username_exists})
+    
+@api_view(['GET'])
+def getUser(request):
+    if request.method == 'GET':
+        username = request.query_params.get('username', '')
+        if (User.objects.filter(username=username).exists()):
+            user = User.objects.get(username=username)
+            resposta = Response({'username':user.username, 'email':user.email})
+        else:
+            resposta = Response({'username':None, 'email':None})
+
+
+        return resposta

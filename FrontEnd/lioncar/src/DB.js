@@ -26,6 +26,21 @@ const Db = {
         }
     },
 
+    getUser: async (username) => {
+        const endpoint = 'api/getuser';
+
+        try {
+            const response = await axios.get(`${API_BASE}/${endpoint}`, {
+                params: { username:username }
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao buscar dados:", error);
+            return null;
+        }
+    },
+
     getToken: async (formToken) => {
         const responseToken = axios.post(`${API_TOKEN}`,formToken);
         return (await responseToken).data.token;

@@ -1,16 +1,22 @@
 import React from 'react';
 import "./user.css";
 import {  useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logOut } from '../../redux/userSlice'; 
 
 
 const User = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   const handleBackClick = () => {
     navigate('/home');
   };
 
   const handleLogoutClick = () => {
+    dispatch(logOut());
     navigate('/');
   };
 

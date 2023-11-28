@@ -4,15 +4,16 @@ export const slice = createSlice({
     name: 'user',
     initialState: {
         username: '',
+        email: '',
         token: '',
         isLogged: false,
     },
     reducers: {
         logIn(state, { payload }) {
-            return { ...state, isLogged: true, username: payload.username, token: payload.token }
+            return { ...state, isLogged: true, username: payload.username, token: payload.token, email: payload.email }
         },
         logOut(state) {
-            return { ...state, isLogged: false, username: '', token: '' }
+            return { ...state, isLogged: false, username: '', token: '', email: '' }
         }
     }
 })

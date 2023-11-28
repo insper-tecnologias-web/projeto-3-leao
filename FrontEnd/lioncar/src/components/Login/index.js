@@ -28,17 +28,22 @@ export default function Login(props) {
             "password": formPassword
         };
         const token = await Db.getToken(formGetToken);
-        
-        if (!token) {
+        const user = await Db.getUser(formUserName);
+
+        if (!user.username){
+            setWarningLogin('Usuário inexistente');
+            setWarningColor('red');
+        }
+        else if (!token) {
             setWarningLogin('Usuário ou senha incorretos');
             setWarningColor('red');
-            
+
         } else {
-                dispatch(logIn({username: formUserName, token: token}));
-                setWarningLogin('Senha correta');
-                setWarningColor('green');
-                navigate("home");
-            }
+            dispatch(logIn({ username: user.username, token: token, email: user.email}));
+            setWarningLogin('Senha correta');
+            setWarningColor('green');
+            navigate("home");
+        }
     };
 
     return (
@@ -54,9 +59,9 @@ export default function Login(props) {
                     <div className="form-section">
                         <label htmlFor="password">Digite sua senha:</label>
                         <div className="input-btn">
-                            <input className="input-field"  placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
+                            <input className="input-field" placeholder="Senha" type={showPassword ? "text" : "password"} id="password" name="password" required />
                             <button className="viewpassword-btn" type="button" onClick={togglePasswordVisibility}>
-                                {showPassword ? <RemoveRedEyeOutlinedIcon/> : <VisibilityOffOutlinedIcon/>}
+                                {showPassword ? <RemoveRedEyeOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
                             </button>
                         </div>
                     </div>
