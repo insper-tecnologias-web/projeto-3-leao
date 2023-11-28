@@ -1,9 +1,9 @@
 import React from 'react';
 import "./user.css";
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { logOut } from '../../redux/userSlice'; 
+import { logOut } from '../../redux/userSlice';
 
 
 const User = (props) => {
@@ -27,10 +27,8 @@ const User = (props) => {
           <img src='images/user.png' alt="User Profile" />
         </div>
         <div className="user-details">
-        <h2>Username: leao_1923</h2>
-        <h2>Email: leao@gmail.com </h2>
-          {/* <h2>{user.username}</h2> */}
-          {/* <p>Email: {user.email}</p> */}
+          <h2>Username: {user.username}</h2>
+          <h2>Email: {user.email} </h2>
         </div>
         <button className="logout-button" onClick={handleLogoutClick}>
           Sair
