@@ -25,11 +25,10 @@ function Head(props) {
     return (
         <header className="site-header">
                 <div className="aa">
-                    <h1 className="site-title">Lion Cars</h1>
+                    <h1><a  className="site-title" onClick={() => navigate('/home')}>Lion Cars</a></h1>
                 </div>
                 <nav className="main-nav">
                     <ul>
-                        <li><a onClick={() => navigate('/home')}>Home</a></li>
                         <li><a onClick={() => navigate('/home')}>Published Cars</a></li>
                         <li><a onClick={() => navigate('/about')}>About</a></li>
                     </ul>
