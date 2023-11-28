@@ -8,10 +8,11 @@ export default function Home(props) {
     const navigate = useNavigate();
     const user = useSelector(state => state.user);
 
+    
     useEffect(() => {
         if (!user.isLogged) {
-            navigate("/");
-        }
+            navigate("../login");
+        }  
     }, [user.isLogged, navigate]);
         
     return (

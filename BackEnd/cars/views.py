@@ -20,22 +20,20 @@ def index(request):
 @permission_classes([IsAuthenticated])
 def api_cars(request):
     if request.method == "POST":
+        print('\n\n\n\n #########')
+        print(request.user)
+        print('#########')
         new_car_data = request.data
-        user = new_car_data['user']
-        price = new_car_data['price']
-        brand = new_car_data['brand']
-        model = new_car_data['model']
-        year = new_car_data['year']
-        fuel = new_car_data['fuel']
-        fipeCode = new_car_data['fipeCode']
-        car = Car(user=user, price=price, brand=brand, model=model,
-                  year=year, fuel=fuel, fipeCode=fipeCode)
-        car.save()
+        new_car_data['user'] = request.user
+        Car.objects.create(**new_car_data)
+        return Response({'published': 'Carro publicado com sucesso!'}, status=201)
 
-    cars = Car.objects.all()
-
-    serialized_car = CarSerializer(cars, many=True)
-    return Response(serialized_car.data)
+    if request.method == 'GET':
+        cars = Car.objects.all()
+        serialized_car = CarSerializer(cars, many=True)
+        return Response(serialized_car.data)
+    
+    return Response({'message': 'Invalid request method'}, status=400)
 
 
 @api_view(['GET', 'POST'])
@@ -79,8 +77,6 @@ def checkUserExistence(request):
         username = request.query_params.get('username', '')
         email_exists = User.objects.filter(email=email).exists()
         username_exists = User.objects.filter(username=username).exists()
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-
         return Response({'email_exists': email_exists, 'username_exists': username_exists})
     
 @api_view(['GET'])

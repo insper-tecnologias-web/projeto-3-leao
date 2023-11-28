@@ -45,7 +45,8 @@ const API = {
             console.error("Erro ao buscar dados:", error);
             return null;
         } 
-    }
+    },
+    
 };
 
 export default API;

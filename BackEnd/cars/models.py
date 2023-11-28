@@ -14,12 +14,19 @@ from django.contrib.auth.models import User
 # Depois, defina o modelo Car
 class Car(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2, default= False)
+    """  price = models.DecimalField(max_digits=10, decimal_places=2, default= False)
     brand = models.CharField(max_length=50, default= False)
     model = models.CharField(max_length=200, default= False)
     year = models.IntegerField(default= False)  # Não precisa de max_length para IntegerField
     fuel = models.CharField(max_length=50 , default= False)
-    fipeCode = models.CharField(max_length=50, default= False)
+    fipeCode = models.CharField(max_length=50, default= False) """
+
+    type = models.CharField(max_length=50, default= False)
+    brand = models.CharField(max_length=50, default= False)
+    model = models.CharField(max_length=50, default= False)
+    year = models.CharField(max_length=50, default= False)
+    price = models.IntegerField(default= False)
+    description = models.TextField(max_length=1000)
 
     def __str__(self):
         return f"{self.id}. {self.brand} {self.model} {self.year}"

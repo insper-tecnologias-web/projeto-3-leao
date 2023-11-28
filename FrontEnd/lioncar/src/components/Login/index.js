@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './login.css'
 import Db from '../../DB'
@@ -6,6 +6,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/userSlice";
+import { useSelector } from "react-redux";
 
 export default function Login(props) {
 
@@ -14,6 +15,18 @@ export default function Login(props) {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+
+
+    useEffect(() => {
+        if (user.isLogged) {
+            navigate("/");
+        }
+        console.log("AAAAAAAAA")
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -42,7 +55,7 @@ export default function Login(props) {
             dispatch(logIn({ username: user.username, token: token, email: user.email}));
             setWarningLogin('Senha correta');
             setWarningColor('green');
-            navigate("home");
+            navigate("/");
         }
     };
 

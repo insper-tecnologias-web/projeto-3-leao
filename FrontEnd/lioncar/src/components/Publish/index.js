@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import './publish.css';
 import API from '../../API';
+import Db from '../../DB'
+import { useSelector } from "react-redux";
 
 const Publish = (props) => {
+
+    const user = useSelector(state => state.user);
 
     const tipos = ['carros', 'motos', 'caminhoes'];
     const [tipoSelecionado, setTipoSelecionado] = useState(null);
@@ -30,7 +34,7 @@ const Publish = (props) => {
         return true
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const formDataObject = {};
@@ -39,8 +43,23 @@ const Publish = (props) => {
         });
         setWarningColor('red');
         if (checkForm(formDataObject)) {
-            setWarningColor('green');
-            setWarning('Veículo postado!')
+            formDataObject.price = parseInt(formDataObject.price, 10);
+            console.log(formDataObject);
+
+            const post_feedback = await Db.postCar(formDataObject, user.token)
+
+            console.log('\n\n\n\n\n')
+            console.log(post_feedback)
+            console.log('\n\n\n\n\n')
+
+            if (post_feedback !== '[ERROR]') {
+                setWarningColor('red');
+                setWarning('Erro ao postar veículo :(');
+            } else {
+                setWarningColor('green');
+                setWarning('Veículo postado!')
+            }
+
         }
     };
 
@@ -108,7 +127,7 @@ const Publish = (props) => {
 
                 <div className='input-section'>
                     <label htmlFor="tipo">Tipo do veículo:</label>
-                    <select className='inputOption' name="tipo" onChange={handleMudancaTipo}>
+                    <select className='inputOption' name="type" onChange={handleMudancaTipo}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -122,7 +141,7 @@ const Publish = (props) => {
 
                 <div className='input-section'>
                     <label htmlFor="marca">Marca do veículo:</label>
-                    <select className='inputOption' name="marca" onChange={handleMudancaMarca}>
+                    <select className='inputOption' name="brand" onChange={handleMudancaMarca}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -139,7 +158,7 @@ const Publish = (props) => {
 
                 <div className='input-section'>
                     <label htmlFor="modelo">Modelo do veículo:</label>
-                    <select className='inputOption' name="modelo" onChange={handleMudancaModelo}>
+                    <select className='inputOption' name="model" onChange={handleMudancaModelo}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -155,7 +174,7 @@ const Publish = (props) => {
 
                 <div className='input-section'>
                     <label htmlFor="ano">Ano do veículo:</label>
-                    <select className='inputOption' name="ano" onChange={handleMudancaAno}>
+                    <select className='inputOption' name="year" onChange={handleMudancaAno}>
                         <option value={''}>
                             {'---'}
                         </option>
@@ -181,7 +200,7 @@ const Publish = (props) => {
                         className='inputField'
                         type="number"
                         placeholder="Preço a venda"
-                        name="preco"
+                        name="price"
                     />
                 </div>
 
@@ -193,7 +212,7 @@ const Publish = (props) => {
                         type="text"
                         maxLength="1000"
                         placeholder="Descrição"
-                        name="descricao"
+                        name="description"
                     />
                 </div>
 

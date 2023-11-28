@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./user.css";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -11,13 +11,20 @@ const User = (props) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
+  useEffect(() => {
+    if (!user.isLogged) {
+        navigate("../login");
+    }
+    console.log("AAAAAAAAA")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [user.isLogged]);
+
   const handleBackClick = () => {
     navigate('/home');
   };
 
   const handleLogoutClick = () => {
     dispatch(logOut());
-    navigate('/');
   };
 
   return (
