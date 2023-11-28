@@ -4,6 +4,8 @@ import './login.css'
 import Db from '../../DB'
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/userSlice";
 
 export default function Login(props) {
 
@@ -11,6 +13,7 @@ export default function Login(props) {
     const [warningColor, setWarningColor] = useState('red');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -31,9 +34,10 @@ export default function Login(props) {
             setWarningColor('red');
             
         } else {
+                dispatch(logIn({username: formUserName, token: token}));
                 setWarningLogin('Senha correta');
                 setWarningColor('green');
-                navigate("home", { state: { token, formUserName } });
+                navigate("home");
             }
     };
 
