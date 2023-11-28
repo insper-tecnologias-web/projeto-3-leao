@@ -2,9 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./head.css";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useSelector } from "react-redux";
+
 
 function Head(props) {
     const navigate = useNavigate();
+    const user = useSelector(state => state.user);
+
 
 
     return (
@@ -20,7 +24,7 @@ function Head(props) {
                     </ul>
                 </nav>
                 <div className="user">
-                    <h2 className="user-name">Olá, Leão</h2>
+                    <h2 className="user-name">Olá, {user.username}</h2>
                     <button className="user-button" type="button" onClick={() => navigate("/user")}>
                         <AccountCircleIcon />
                     </button>
