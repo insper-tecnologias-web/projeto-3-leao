@@ -4,11 +4,10 @@ import {  useNavigate } from 'react-router-dom';
 
 
 const User = (props) => {
-  //const { user } = props.location?.state || {}; // Se não houver dados de usuário, use um objeto vazio como padrão
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate('/home'); // Navegar de volta para a página Home
+    navigate('/home');
   };
 
   const handleLogoutClick = () => {

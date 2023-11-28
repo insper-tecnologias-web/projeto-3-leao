@@ -48,7 +48,6 @@ def api_user(request):
         username = request.data['username']
         email = request.data['email']
         password = request.data['password']
-        print(password)
 
         user = User.objects.create_user(username, email, password)
         user.save()

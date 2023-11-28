@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./head.css";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -25,18 +25,21 @@ function Head(props) {
     return (
         <>
             <header className="site-header">
-                <nav className="main-nav">
-                    <ul>
-                        <li><a onClick={goToHome}>Home</a></li>
-                        <li><a onClick={goToHome}>Published Cars</a></li>
-                        <li><a onClick={goToAbout}>About</a></li>
-                        <li><a onClick={goToFeedback}>Feedback</a></li>
-                    </ul>
-                </nav>
-                <div className="aa">
-                    <h1 className="site-title">Lion Cars</h1>
+                <div className="main-header">
+                    <div className="aa">
+                        <a onClick={goToHome}>
+                            <h1 className="site-title">Lion Cars</h1>
+                        </a>
+                    </div>
+                    <nav className="main-nav">
+                        <ul>
+                            <li><a onClick={goToHome}>Published Cars</a></li>
+                            <li><a onClick={goToAbout}>About</a></li>
+                            <li><a onClick={goToFeedback}>Feedback</a></li>
+                        </ul>
+                    </nav>
                 </div>
-                <div className="user">
+                <div className="user-camp">
                     <h2 className="user-name">Olá, {props.username}</h2>
                     <button className="user-button" type="button" onClick={goToUser}>
                         <AccountCircleIcon />
