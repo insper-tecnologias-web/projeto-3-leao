@@ -65,7 +65,7 @@ export default function Register(props) {
     return (
         <>
             <div className="main-login">    
-            <img className="register-img" src='images/login.png' alt="Logo Lion Car" />
+            <img className="register-img" src='images/reg.jpeg' alt="Logo Lion Car" />
             <div className="div-login-section">
             <p className="login-section-title">Hello, Register!</p>
             <form encType="multipart/form-data" onSubmit={handlePost}>
