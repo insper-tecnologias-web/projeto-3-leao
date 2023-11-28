@@ -6,9 +6,9 @@ import { useLocation } from 'react-router-dom';
 
 export default function Home(props) {
 
+    const location = useLocation();
     const [token,setToken]=useState();
     const [username, setUsername]=useState();
-    const location = useLocation();
 
     useEffect(() => {
         setToken(location.state.token);
