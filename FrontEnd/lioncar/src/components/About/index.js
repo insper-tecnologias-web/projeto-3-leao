@@ -3,25 +3,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './about.css';
-import { useNavigate } from 'react-router-dom';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const About = (props) => {
-
-    const navigate = useNavigate();
-
-    // Agora, forneça o caminho completo para a navegação
-    const goToUser = () => {
-        navigate("/user");
-    }
-
-    const goToFeedback = () => {
-        navigate("/feedback");
-    }
-    const goToHome = () => {
-        navigate("/home");
-    }
 
   return (
     <>

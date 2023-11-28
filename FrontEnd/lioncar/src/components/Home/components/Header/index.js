@@ -6,21 +6,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function Head(props) {
     const navigate = useNavigate();
 
-    const goToUser = () => {
-        navigate("/user");
-    }
-
-    const goToAbout = () => {
-        navigate("/about");
-    }
-
-    const goToHome = () => {
-        navigate("/home");
-    }
-
-    const goToFeedback = () => {
-        navigate("/feedback");
-    }
 
     return (
         <header className="site-header">
@@ -29,8 +14,9 @@ function Head(props) {
                 </div>
                 <nav className="main-nav">
                     <ul>
-                        <li><a onClick={() => navigate('/home')}>Published Cars</a></li>
-                        <li><a onClick={() => navigate('/about')}>About</a></li>
+                        <li onClick={() => navigate('/home')}>Home</li>
+                        <li onClick={() => navigate('/home')}>Published Cars</li>
+                        <li onClick={() => navigate('/about')}>About</li>
                     </ul>
                 </nav>
                 <div className="user">

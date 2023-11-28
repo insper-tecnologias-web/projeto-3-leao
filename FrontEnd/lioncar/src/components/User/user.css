@@ -39,19 +39,6 @@
   .site-title {
     font-size: 36px;
   }
-
-  /* user.css */
-
-.header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .header h1 {
-    margin: 0;
-  }
   
   .back-button {
     background-color: #e5e1e1;

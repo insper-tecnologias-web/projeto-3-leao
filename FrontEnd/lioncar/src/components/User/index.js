@@ -16,9 +16,6 @@ const User = (props) => {
 
   return (
     <>
-      <div className="header">
-      <h1 className="site-title">Lion Cars</h1>
-      </div>
       <div className="user-profile">
         <div className="profile-picture">
           <img src='images/user.png' alt="User Profile" />

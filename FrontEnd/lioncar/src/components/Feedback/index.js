@@ -1,10 +1,8 @@
 // Feedback.js
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './feedback.css'; // Crie um arquivo Feedback.css para estilizar a página se necessário
 import { useNavigate } from 'react-router-dom';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Feedback = (props) => {
     const [feedback, setFeedback] = useState('');
