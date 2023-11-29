@@ -9,5 +9,6 @@ urlpatterns = [
     path('api/token/', views.api_get_token),
     path('api/users/', views.api_user),
     path('api/checkuserexistence', views.checkUserExistence),
-    path('api/getuser', views.getUser)
+    path('api/getuser', views.getUser),
+    path('api/usercars/', views.userCars)
 ]

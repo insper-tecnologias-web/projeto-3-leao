@@ -86,5 +86,15 @@ def getUser(request):
         else:
             resposta = Response({'username':None, 'email':None})
 
-
         return resposta
+    
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def userCars(request):
+    user = request.user
+    if request.method == 'GET':
+        cars = Car.objects.filter(user=user)
+        serialized_car = CarSerializer(cars, many=True)
+        return Response(serialized_car.data)
+    
+    return Response({'message': 'Invalid request method'}, status=400)

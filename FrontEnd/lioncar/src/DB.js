@@ -81,6 +81,21 @@ const Db = {
             console.error("Erro ao buscar dados:", error);
             return null;
         } 
+    },
+
+    getUserCars: async (token) => {
+        try {
+            const response = await axios.get(`${API_BASE}/api/usercars/`, {
+                headers: {
+                    Authorization: `Token ${token}`, 
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log('[ERROR]');
+            console.error("Erro ao buscar dados:", error);
+            return null;
+        } 
     }
 
 
