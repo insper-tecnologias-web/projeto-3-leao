@@ -18,6 +18,7 @@ function CarCard(props) {
           .catch(error => {
             console.error('Erro ao buscar os dados da API', error);
        });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     return (
