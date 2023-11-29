@@ -3,12 +3,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './about.css';
+import Header from './components/Header'
+
 
 
 const About = (props) => {
 
   return (
     <>
+    <Header />
         <div className="about-container">
         <h1 className="about-title">Bem-vindo à Lion Cars</h1>
         <p className="about-text">

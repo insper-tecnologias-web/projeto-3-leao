@@ -20,9 +20,6 @@ def index(request):
 @permission_classes([IsAuthenticated])
 def api_cars(request):
     if request.method == "POST":
-        print('\n\n\n\n #########')
-        print(request.user)
-        print('#########')
         new_car_data = request.data
         new_car_data['user'] = request.user
         Car.objects.create(**new_car_data)
