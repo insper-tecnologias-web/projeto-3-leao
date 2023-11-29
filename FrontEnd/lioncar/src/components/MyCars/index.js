@@ -24,7 +24,7 @@ const MyCars = (props) => {
         <>
             <h1 onClick={()=>{console.log(userCars)}}>My cars</h1>
             <div>
-            {userCars.length> 0 ?(userCars.map((item) => (<CarCard key={`note__${item.id}`} goto={"/editcarpage"} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
+            {userCars.length> 0 ?(userCars.map((item) => (<CarCard key={`note__${item.id}`} payload={item} goto={"/editcarpage"} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
             </div>
         </>
     );
