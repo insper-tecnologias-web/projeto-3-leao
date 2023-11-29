@@ -16,6 +16,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from './redux/store';
 
 
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +53,7 @@ const router = createBrowserRouter([
     element: <MyCars />,
   }
 ]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
