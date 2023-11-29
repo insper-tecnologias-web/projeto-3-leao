@@ -26,10 +26,11 @@ def api_cars(request):
         return Response({'published': 'Carro publicado com sucesso!'}, status=201)
 
     if request.method == 'GET':
+        print("LALALALALLALA")
         cars = Car.objects.all()
         serialized_car = CarSerializer(cars, many=True)
         return Response(serialized_car.data)
-    
+
     return Response({'message': 'Invalid request method'}, status=400)
 
 
@@ -75,16 +76,17 @@ def checkUserExistence(request):
         email_exists = User.objects.filter(email=email).exists()
         username_exists = User.objects.filter(username=username).exists()
         return Response({'email_exists': email_exists, 'username_exists': username_exists})
-    
+
+
 @api_view(['GET'])
 def getUser(request):
     if request.method == 'GET':
         username = request.query_params.get('username', '')
         if (User.objects.filter(username=username).exists()):
             user = User.objects.get(username=username)
-            resposta = Response({'username':user.username, 'email':user.email})
+            resposta = Response(
+                {'username': user.username, 'email': user.email})
         else:
-            resposta = Response({'username':None, 'email':None})
-
+            resposta = Response({'username': None, 'email': None})
 
         return resposta

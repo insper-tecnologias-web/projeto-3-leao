@@ -4,29 +4,33 @@ import PublishIcon from '@mui/icons-material/Publish';
 import "./catalogue.css";
 import CarCard from "./components/CarCard";
 import Db from '../../../../DB'
+
 import { useSelector } from "react-redux";
 
 
 
 function Catalogue() {
     const user = useSelector(state => state.user);
-    const [Cars, setCars] = useState(null);
-    const getcar = async() =>{
-       return await Db.getCar( user.token)
-    }
-
+    const [Cars, setCars] = useState([]);
     useEffect(() => {
-        console.log(getcar())
-    }, []);
+        Db.getCar( user.token)
+          .then((res) => {
+            console.log(res);
+            setCars(res)
+          })
+          .catch(error => {
+            console.error('Erro ao buscar os dados da API', error);
+       });
+    },[]);
+    
+
+
     return (
         <div className="catalogue-div">
             <p className="catalogue-title">Carros publicados</p>
+            <p onClick={()=>{console.log(Cars)}}>LALALA</p>
             <section className="catalogue-section">
-                <CarCard></CarCard>
-                <CarCard></CarCard>
-                <CarCard></CarCard>
-                <CarCard></CarCard>
-                <CarCard></CarCard>
+            {Cars.length> 0 ?(Cars.map((item) => (<CarCard type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
             </section>
 
             {/* Botão para a página de publicação */}
@@ -38,3 +42,5 @@ function Catalogue() {
 }
 
 export default Catalogue;
+
+
