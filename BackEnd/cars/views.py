@@ -89,6 +89,7 @@ def getUser(request):
         else:
             resposta = Response({'username': None, 'email': None})
 
+
         return resposta
     
 @api_view(['GET', 'POST'])

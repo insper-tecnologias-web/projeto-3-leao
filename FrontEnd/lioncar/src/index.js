@@ -11,14 +11,19 @@ import Publish from './components/Publish';
 import About from './components/About';
 import Feedback from './components/Feedback';
 import MyCars from './components/MyCars';
+import CarPage from './components/carPage';
+import EditCarPage from './components/editrCarPage';
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from './redux/store';
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 33077c6520b033e70b4242b885dd224258d32891
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,7 +56,15 @@ const router = createBrowserRouter([
   {
     path: "mycars",
     element: <MyCars />,
-  }
+  },
+  {
+    path: "carpage",
+    element: <CarPage />,
+  },
+  {
+    path: "editcarpage",
+    element: <EditCarPage />,
+  },
 ]);
 
 
