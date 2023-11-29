@@ -49,15 +49,17 @@ const Publish = (props) => {
             const post_feedback = await Db.postCar(formDataObject, user.token)
 
             console.log('\n\n\n\n\n')
+            console.log('AAAAAAAA')
             console.log(post_feedback)
             console.log('\n\n\n\n\n')
 
-            if (post_feedback !== '[ERROR]') {
-                setWarningColor('red');
-                setWarning('Erro ao postar veículo :(');
-            } else {
+            if (post_feedback.published === 'Carro publicado com sucesso!') {
                 setWarningColor('green');
                 setWarning('Veículo postado!')
+
+            } else {
+                setWarningColor('red');
+                setWarning('Erro ao postar veículo :(');
             }
 
         }
@@ -119,6 +121,7 @@ const Publish = (props) => {
     };
 
     return (
+
         <div className='main'>
             <img className="publisher-img" src='images/login.png' alt="Logo Lion Car" />
             <form className='from-publisher' encType="multipart/form-data" onSubmit={handleSubmit}>

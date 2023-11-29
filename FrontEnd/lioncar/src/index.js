@@ -10,6 +10,7 @@ import User from './components/User';
 import Publish from './components/Publish';
 import About from './components/About';
 import Feedback from './components/Feedback';
+import MyCars from './components/MyCars';
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from './redux/store';
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "feedback",
     element: <Feedback />,
+  },
+  {
+    path: "mycars",
+    element: <MyCars />,
   }
 ]);
 

@@ -8,7 +8,6 @@ export default function Home(props) {
     const navigate = useNavigate();
     const user = useSelector(state => state.user);
 
-    
     useEffect(() => {
         if (!user.isLogged) {
             navigate("../login");
@@ -17,7 +16,7 @@ export default function Home(props) {
         
     return (
         <>
-            <Header username={user.username}></Header>
+            <Header />
             <Catalogue></Catalogue>
         </>
     );

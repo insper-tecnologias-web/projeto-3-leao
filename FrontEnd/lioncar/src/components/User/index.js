@@ -20,7 +20,7 @@ const User = (props) => {
 }, [user.isLogged]);
 
   const handleBackClick = () => {
-    navigate('/home');
+    navigate('/');
   };
 
   const handleLogoutClick = () => {

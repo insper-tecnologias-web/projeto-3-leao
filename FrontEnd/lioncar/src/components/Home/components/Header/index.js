@@ -9,17 +9,14 @@ function Head(props) {
     const navigate = useNavigate();
     const user = useSelector(state => state.user);
 
-
-
     return (
         <header className="site-header">
                 <div className="aa">
-                    <h1><a  className="site-title" onClick={() => navigate('/home')}>Lion Cars</a></h1>
+                    <h1 className="site-title" onClick={() => navigate('/')}>Lion Cars</h1>
                 </div>
                 <nav className="main-nav">
                     <ul>
-                        <li onClick={() => navigate('/home')}>Home</li>
-                        <li onClick={() => navigate('/home')}>Published Cars</li>
+                        <li onClick={() => navigate('/mycars')}>My Cars</li>
                         <li onClick={() => navigate('/about')}>About</li>
                     </ul>
                 </nav>
