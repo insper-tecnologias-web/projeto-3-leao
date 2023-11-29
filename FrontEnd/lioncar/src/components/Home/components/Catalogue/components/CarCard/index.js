@@ -19,6 +19,10 @@ function CarCard(props) {
     console.log(props.goto);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const preço = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(props.payload.price);
 
   return (
        
@@ -27,7 +31,7 @@ function CarCard(props) {
       <p className="Marca">{values.Marca}</p>
       <p className="Modelo">{values.Modelo}</p>
       <p className="AnoModelo">{values.AnoModelo}</p>
-      <p className="Fipe">{values.Valor}</p>
+      <p className="Preço">{preço}</p>
     </div>
   );
 
