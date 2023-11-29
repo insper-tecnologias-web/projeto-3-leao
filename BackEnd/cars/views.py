@@ -87,11 +87,7 @@ def getUser(request):
             resposta = Response(
                 {'username': user.username, 'email': user.email})
         else:
-<<<<<<< HEAD
-            resposta = Response({'username':None, 'email':None})
-=======
             resposta = Response({'username': None, 'email': None})
->>>>>>> 268a3a522dd70a0f15c30ae94418ca7d818be295
 
         return resposta
     
