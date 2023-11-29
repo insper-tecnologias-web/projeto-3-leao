@@ -21,7 +21,7 @@ function Catalogue() {
           .catch(error => {
             console.error('Erro ao buscar os dados da API', error);
        });
-    },[]);
+    },[user.token]);
     
 
 
@@ -30,7 +30,7 @@ function Catalogue() {
             <p className="catalogue-title">Carros publicados</p>
             <p onClick={()=>{console.log(Cars)}}>LALALA</p>
             <section className="catalogue-section">
-            {Cars.length> 0 ?(Cars.map((item) => (<CarCard type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
+            {Cars.length> 0 ?(Cars.map((item) => (<CarCard key={`note__${item.id}`} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
             </section>
 
             {/* Botão para a página de publicação */}
