@@ -22,7 +22,6 @@ export default function Login(props) {
         if (user.isLogged) {
             navigate("/");
         }
-        console.log("AAAAAAAAA")
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
