@@ -10,8 +10,6 @@ function CarCard(props) {
     console.log(props.type, props.brand, props.model, props.year)
     API.getValor(props.type, props.brand, props.model, props.year)
       .then((res) => {
-        console.log("AAAAAAAAAAAAAAAAAA")
-        console.log(res);
         setValues(res)
       })
       .catch(error => {
@@ -23,7 +21,9 @@ function CarCard(props) {
   }, []);
 
   return (
-    <div onClick={() => props.goto ? navigate(props.goto) : null} className="main-car-card">
+       
+    <div onClick={() => props.goto ? navigate(props.goto, { state: {payload: props.payload, value:values }}) : null} className="main-car-card">
+
       <p className="Marca">{values.Marca}</p>
       <p className="Modelo">{values.Modelo}</p>
       <p className="AnoModelo">{values.AnoModelo}</p>

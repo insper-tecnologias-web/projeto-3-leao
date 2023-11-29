@@ -16,7 +16,6 @@ function Catalogue() {
     useEffect(() => {
         Db.getCar( user.token)
           .then((res) => {
-            console.log(res);
             setCars(res)
           })
           .catch(error => {
@@ -31,7 +30,7 @@ function Catalogue() {
         <div className="catalogue-div">
             <p className="catalogue-title">Carros publicados</p>
             <section className="catalogue-section">
-            {Cars.length> 0 ?(Cars.map((item) => (<CarCard key={`note__${item.id}`} goto={'/carpage'} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
+            {Cars.length> 0 ?(Cars.map((item) => (<CarCard key={`note__${item.id}`} goto={'/carpage'} payload={item} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
             </section>
 
             {/* Botão para a página de publicação */}
