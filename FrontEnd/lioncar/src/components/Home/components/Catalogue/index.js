@@ -1,11 +1,12 @@
 import React, { useState, useEffect} from 'react';
-import { Link } from "react-router-dom";
 import PublishIcon from '@mui/icons-material/Publish';
 import "./catalogue.css";
 import CarCard from "./components/CarCard";
 import Db from '../../../../DB'
 
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -22,15 +23,15 @@ function Catalogue() {
             console.error('Erro ao buscar os dados da API', error);
        });
     },[user.token]);
+
     
 
 
     return (
         <div className="catalogue-div">
             <p className="catalogue-title">Carros publicados</p>
-            <p onClick={()=>{console.log(Cars)}}>LALALA</p>
             <section className="catalogue-section">
-            {Cars.length> 0 ?(Cars.map((item) => (<CarCard key={`note__${item.id}`} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
+            {Cars.length> 0 ?(Cars.map((item) => (<CarCard key={`note__${item.id}`} goto={'/carpage'} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
             </section>
 
             {/* Botão para a página de publicação */}

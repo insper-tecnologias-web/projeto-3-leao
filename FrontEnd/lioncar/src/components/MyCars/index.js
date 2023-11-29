@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from "react-redux";
 import Db from '../../DB'
 import CarCard from '../Home/components/Catalogue/components/CarCard';
+
+
+import { useSelector } from "react-redux";
+
 
 
 const MyCars = (props) => {
@@ -21,7 +24,7 @@ const MyCars = (props) => {
         <>
             <h1 onClick={()=>{console.log(userCars)}}>My cars</h1>
             <div>
-            {userCars.length> 0 ?(userCars.map((item) => (<CarCard key={`note__${item.id}`} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
+            {userCars.length> 0 ?(userCars.map((item) => (<CarCard key={`note__${item.id}`} goto={"/editcarpage"} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
             </div>
         </>
     );
