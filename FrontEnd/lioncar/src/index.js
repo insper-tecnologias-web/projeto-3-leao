@@ -19,11 +19,6 @@ import { store, persistor } from './redux/store';
 
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 33077c6520b033e70b4242b885dd224258d32891
 const router = createBrowserRouter([
   {
     path: "/",
