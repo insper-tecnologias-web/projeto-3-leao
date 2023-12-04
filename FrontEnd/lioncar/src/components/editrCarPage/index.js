@@ -6,6 +6,8 @@ import API from '../../API';
 import Db from '../../DB'
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Header from "../Header";
+
 
 const EditCarPage = (props) => {
 
@@ -171,6 +173,8 @@ const EditCarPage = (props) => {
     };
 
     return (
+        <>
+        <Header></Header>
         <div className='main'>
             <img className="publisher-img" src='images/login.png' alt="Logo Lion Car" />
             <form className='from-publisher' encType="multipart/form-data" onSubmit={handleSubmit}>
@@ -286,6 +290,7 @@ const EditCarPage = (props) => {
 
 
         </div>
+        </>
     );
 };
 

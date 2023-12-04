@@ -3,8 +3,13 @@ import './publish.css';
 import API from '../../API';
 import Db from '../../DB'
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Header from "../Header";
+
 
 const Publish = (props) => {
+
+    const navigate = useNavigate();
 
     const user = useSelector(state => state.user);
 
@@ -56,6 +61,7 @@ const Publish = (props) => {
             if (post_feedback.published === 'Carro publicado com sucesso!') {
                 setWarningColor('green');
                 setWarning('Veículo postado!')
+                navigate("/")
 
             } else {
                 setWarningColor('red');
@@ -121,7 +127,8 @@ const Publish = (props) => {
     };
 
     return (
-
+        <>
+        <Header></Header>
         <div className='main'>
             <img className="publisher-img" src='images/login.png' alt="Logo Lion Car" />
             <form className='from-publisher' encType="multipart/form-data" onSubmit={handleSubmit}>
@@ -230,6 +237,7 @@ const Publish = (props) => {
 
 
         </div>
+        </>
     );
 };
 
