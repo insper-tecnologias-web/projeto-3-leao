@@ -42,6 +42,9 @@
 }
 
 .btn-delete-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 10px;
     width: 100%;
     border: none;

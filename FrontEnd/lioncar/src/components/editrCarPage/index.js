@@ -5,12 +5,12 @@ import { useLocation } from "react-router-dom";
 import API from '../../API';
 import Db from '../../DB'
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const EditCarPage = (props) => {
 
     const location = useLocation();
     const payload = location.state ? location.state.payload : null;
-    console.log(payload);
     const user = useSelector(state => state.user);
 
     const tipos = ['carros', 'motos', 'caminhoes'];
@@ -27,6 +27,9 @@ const EditCarPage = (props) => {
 
     const [warning, setWarning] = useState(null);
     const [warningColor, setWarningColor] = useState('red');
+
+    const navigate = useNavigate();
+
 
 
     useEffect(() => {
@@ -70,6 +73,20 @@ const EditCarPage = (props) => {
         return true
     }
 
+    const handleDelete = async () => {
+
+        const feedback = await Db.deleteCar(payload.id, user.token);
+        console.log(feedback.message);
+        if (feedback.message === 'Car deleted successfully') {
+            setWarningColor('green');
+            setWarning('Veículo deletado!');
+            navigate('/');
+        } else {
+            setWarningColor('red');
+            setWarning('Erro ao deletar veículo :(');
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -82,16 +99,12 @@ const EditCarPage = (props) => {
             formDataObject.price = parseInt(formDataObject.price, 10);
             console.log(formDataObject);
 
-            const post_feedback = await Db.postCar(formDataObject, user.token)
+            const put_feedback = await Db.putCar(formDataObject, payload.id, user.token);
 
-            console.log('\n\n\n\n\n')
-            console.log('AAAAAAAA')
-            console.log(post_feedback)
-            console.log('\n\n\n\n\n')
-
-            if (post_feedback.published === 'Carro publicado com sucesso!') {
+            if (put_feedback.message === 'Car updated successfully') {
                 setWarningColor('green');
-                setWarning('Veículo postado!')
+                setWarning('Veículo modificado!');
+                navigate('/');
 
             } else {
                 setWarningColor('red');
@@ -263,9 +276,9 @@ const EditCarPage = (props) => {
                 </div>
 
                 <div>
-                    <button className="btn-delete-form" type="submit">
+                    <div className="btn-delete-form" onClick={handleDelete}>
                         EXCLUIR VEÍCULO
-                    </button>
+                    </div>
                     <p className='warning' style={{ color: warningColor }}>{warning}</p>
                 </div>
 

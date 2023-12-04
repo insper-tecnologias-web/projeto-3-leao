@@ -7,7 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
-
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 
 from .models import Car, User
 
@@ -92,7 +93,7 @@ def getUser(request):
 
         return resposta
     
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def userCars(request):
     user = request.user
@@ -100,5 +101,29 @@ def userCars(request):
         cars = Car.objects.filter(user=user)
         serialized_car = CarSerializer(cars, many=True)
         return Response(serialized_car.data)
+    
+    if request.method == "PUT":
+        new_car_data = request.data.get('formcar', {})
+        id_car = request.data.get('idcar')
+
+        if id_car is None:
+            return Response({'message': 'Car ID is required for updating'}, status=400)
+
+        Car.objects.filter(id=id_car, user=user).update(**new_car_data)
+
+        return Response({'message': 'Car updated successfully'})
+    
+    if request.method == "DELETE":
+        id_car = request.data.get('idcar')
+
+        if id_car is None:
+            return Response({'message': 'Car ID is required for deletion'}, status=201)
+
+        car = get_object_or_404(Car, id=id_car, user=user)
+
+        car.delete()
+
+        return Response({'message': 'Car deleted successfully'}, status=201)
+
     
     return Response({'message': 'Invalid request method'}, status=400)

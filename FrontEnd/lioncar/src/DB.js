@@ -114,6 +114,40 @@ const Db = {
 
     },
 
+    putCar: async (formCar, idCar, token) => {
+        try {
+            const response = await axios.put(`${API_BASE}/api/usercars/`, {'formcar':formCar, 'idcar':idCar}, {
+                headers: {
+                    Authorization: `Token ${token}`, 
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log('[ERROR]');
+            console.error("Erro ao buscar dados:", error);
+            return null;
+        } 
+    },
+
+    deleteCar: async (idCar, token) => {
+        try {
+            const response = await axios.delete(`${API_BASE}/api/usercars/`, {
+                headers: {
+                    Authorization: `Token ${token}`,
+                },
+                data: {
+                    idcar: idCar,
+                },
+            });
+            return response.data;
+        } catch (error) {
+            console.log('[ERROR]');
+            console.error("Erro ao buscar dados:", error);
+            return null;
+        } 
+    },
+    
+
 
 };
 
