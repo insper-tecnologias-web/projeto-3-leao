@@ -18,7 +18,7 @@ function Head(props) {
                 </div>
                 <nav className="main-nav">
                     <ul>
-                        <li onClick={() => navigate('/')}>My Cars</li>
+                        <li onClick={() => navigate('/mycars')}>My Cars</li>
                         <li onClick={() => navigate('/about')}>About</li>
                     </ul>
                 </nav>
