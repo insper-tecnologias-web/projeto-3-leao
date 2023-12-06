@@ -23,8 +23,8 @@
 }
 
 .publish-button {
-    position: absolute;
-    top: 15.5rem;
+    position: fixed;
+    bottom: 3.7rem; 
     right: 3.7rem;
     width: 33px;
     height: 33px;
@@ -39,6 +39,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
 }
+
 
 .publish-button:hover {
     background-color: #ff8a3c;

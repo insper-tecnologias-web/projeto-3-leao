@@ -22,6 +22,7 @@ function Header(props) {
                     <ul>
                         <li onClick={() => navigate('/mycars')}>My Cars</li>
                         <li onClick={() => navigate('/about')}>About</li>
+                        <li onClick={() => navigate('/feedback')}>Feedback</li>
                     </ul>
                 </nav>
                 <div className="user">
