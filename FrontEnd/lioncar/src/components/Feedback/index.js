@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import './feedback.css'; // Crie um arquivo Feedback.css para estilizar a página se necessário
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import Header from "../Header";
 
 const Feedback = (props) => {
     const [feedback, setFeedback] = useState('');
@@ -12,7 +14,7 @@ const Feedback = (props) => {
 
 
     const handleBackClick = () => {
-        navigate('/home'); // Navegar de volta para a página Home
+        navigate('/'); // Navegar de volta para a página Home
     };
 
     const handleFeedbackChange = (e) => {
@@ -29,7 +31,7 @@ const Feedback = (props) => {
 
     return (
         <>
-            
+            <Header></Header>
             <div className='feedback-container'>
                 <h1 className='feedback-title'>
                     {isFeedbackSubmitted ? 'Obrigado pelo seu feedback!' : 'Dê seu Feedback'}
