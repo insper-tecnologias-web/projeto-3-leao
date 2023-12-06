@@ -1,26 +1,88 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/Jt8DU81q)
+# LionCar
+[Link do repositório do projeto](https://github.com/insper-tecnologias-web/projeto-3-leao)
 
-# LION CAR
-
-Bem-vindo à Lion Car, o destino definitivo para entusiastas de automóveis que buscam uma experiência excepcional ao comprar e vender carros! Somos mais do que um site de comércio de veículos, somos a selva onde seu sonho automotivo se torna realidade. Com o rugido poderoso da confiabilidade e a agilidade de um leão, a Lion Car está aqui para transformar sua jornada automotiva.
-
-Na Lion Car, não apenas vendemos carros; criamos histórias sobre rodas. Nossa plataforma é um ecossistema inovador que conecta compradores e vendedores em uma experiência única, oferecendo uma ampla seleção de veículos de alta qualidade. Nossos leões especializados trabalham incansavelmente para garantir que cada transação seja transparente, segura e emocionante.
-
-"Compre e venda seu carro com o Leão!" é mais do que um slogan; é nosso compromisso de tornar o processo tão ágil quanto o rugido de um leão. Desfrute de uma navegação fácil em nosso site intuitivo, onde você encontrará uma variedade de carros impressionantes, desde clássicos elegantes até os modelos mais recentes que ronronam com inovação.
-
-Na Lion Car, acreditamos que a alegria de dirigir deve começar desde o momento da compra. É por isso que oferecemos suporte excepcional ao cliente, garantindo que você se sinta confiante em cada etapa. Nossa equipe está sempre pronta para responder às suas perguntas e orientá-lo na escolha do veículo perfeito que atenda às suas necessidades e desejos.
-
-E quando você encontrar o carro dos seus sonhos ou fechar um negócio incrível, solte um vibrante "LEÃOOOOOOO!" para celebrar conosco. Afinal, a Lion Car não é apenas sobre carros; é sobre paixão, desempenho e alegria contagiante.
-
-Então, mergulhe na experiência Lion Car - onde a busca pelo seu carro perfeito se transforma em uma emocionante aventura. Compre e venda seu carro com o Leão e deixe-nos ser a força motriz por trás dos seus momentos inesquecíveis sobre quatro rodas! 🦁🚗
+**Autores:** Lucas Lima, Luiz Pini, Felipe Maia e Sérgio Carmelo 
 
 
+## Descrição do Projeto
+[Vídeo de descrição do projeto](https://www.youtube.com/watch?v=sqefaoDILBI)
+
+Este é um projeto desenvolvido em React e Django com o objetivo de colocar em prática conhecimentos sobre tecnologias web. O intuito do site é servir como uma plataforma de compra e venda de veículos.
+
+![Tela principal da aplicação](index-page.png)
+
+## Funcionalidades
+
+1. CRUD: criar, ler, editar e remover veículos da plataforma.
+
+2. Puxar de uma [API externa](https://deividfortuna.github.io/fipe/) informações de carros disponíveis na tabela FIPE.
+
+3. Redux: utilizar o React Redux para acessar variáveis de forma global.
+
+4. Autenticação de usuário.
 
 
+## Requisitos e execução
+
+Para executar a aplicação, siga os seguintes passos:
+
+* Certifique-se de que você possui o Python, NodeJS e Django instalado em seu computador.
+
+* Clone o repositório do projeto:
+   ```bash
+   git clone https://github.com/insper-tecnologias-web/projeto-3-leao
+### Execução do backend
+1. Navegue para o repositório do projeto:
+    ```bash
+    cd projeto-3-leao
+2. Navegue para o diretório do backend:
+
+   ```bash
+   cd BackEnd
+3. Inicie o ambiente virtual:
+    ```bash
+    // Windows PowerShell
+    env\Scripts\Activate.ps1
+
+    // Windows Prompt de Comando
+    env\Scripts\activate.bat
+
+    // Linux/MacOS
+    source env/bin/activate
+4. Inicie o banco de dados:
+    ```bash
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    python3 manage.py runserver
+### Execução do frontend
+1. Navegue para o repositório do projeto:
+    ```bash
+    cd projeto-3-leao
+2. Navegue para o diretório do frontend:
+
+   ```bash
+   cd FrontEnd
+3. Navegue para o diretório do apliciativo:
+
+   ```bash
+   cd lioncar
+4. Inicie a aplicação:
+
+   ```bash
+   npm start
+5. Abra a aplicaçaõe em qualquer navegador usando o link [http://localhost:3000/](http://localhost:3000/)
+
+## Tecnologias Utilizadas
+* **React**: para desenvolver o frontend.
+* **Django**: para desenvolver o backend.
+* **API externa**: [FIPE API HTTP REST](https://deividfortuna.github.io/fipe/) para puxar informações de carros na tabela FIPE.
+
+## Funcionalidades adicionais
+* **Verificação de usuário**: o site possui verificação de existência de usuário para não registrar dois usuários com o mesmo email e username.
 
 
-## Sprints:
-
-- Sprint 1: Início do projeto (Infraestrutura Backend e Modelos) e telas iniciais (Login e Registro);
-
-- Sprint 2: Login com a autenticação do Django Rest, POST de carros pelo usuário;
+## Autores
+* [Lucas Lima](https://github.com/lucasouzamil)
+* [Luiz Pini](https://github.com/luizehp)
+* [Felipe Maia](https://github.com/Fdemaiaar)
+* [Sérgio Carmelo](https://github.com/sergioctf)
