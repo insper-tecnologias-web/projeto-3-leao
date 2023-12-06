@@ -11,9 +11,13 @@ function Header(props) {
 
     return (
         <header className="site-header">
-                <div className="aa">
-                    <h1 className="site-title" onClick={() => navigate('/')}>Lion Cars</h1>
-                </div>
+
+                <img 
+                className="logo-img" 
+                src='images/LOGO_LEAO_cortado.png' 
+                alt="Logo Lion Car" 
+                onClick={() => navigate('/')}/>
+              
                 <nav className="main-nav">
                     <ul>
                         <li onClick={() => navigate('/mycars')}>My Cars</li>
@@ -21,10 +25,10 @@ function Header(props) {
                     </ul>
                 </nav>
                 <div className="user">
-                    <h2 className="user-name">Olá, {user.username}</h2>
                     <button className="user-button" type="button" onClick={() => navigate("/user")}>
-                        <AccountCircleIcon />
+                        <AccountCircleIcon style={{ fontSize: 70 }} />
                     </button>
+                    <p className="user-name">{user.username}</p>
                 </div>
             </header>
     )

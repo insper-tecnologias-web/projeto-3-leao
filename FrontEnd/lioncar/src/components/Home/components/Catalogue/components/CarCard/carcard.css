@@ -1,32 +1,40 @@
 :root{
-    --font-size-pattern: 15px;
+    --font-size-pattern: 17px;
 }
 
 .main-car-card{
     font-family: 'Roboto';
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 7px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fdc096;
+    width: 320px;
     height: auto;
-    margin: 5px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.main-car-card:hover{
+    transform: scale(1.01);
+    transition: transform 0.7s ease;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #f9a369;
 }
 
 .Marca{
-    font-size: var(--font-size-pattern);
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 6px;
 }
 
-.Modelo{
+.Preço{
     font-size: var(--font-size-pattern);
-    font-weight: bold;
 }
 
 .AnoModelo{
-    font-size: var(--font-size-pattern);
-}
-
-.Fipe{
     font-size: var(--font-size-pattern);
 }

@@ -28,10 +28,9 @@ function CarCard(props) {
        
     <div onClick={() => props.goto ? navigate(props.goto, { state: {payload: props.payload, value:values }}) : null} className="main-car-card">
 
-      <p className="Marca">{values.Marca}</p>
-      <p className="Modelo">{values.Modelo}</p>
-      <p className="AnoModelo">{values.AnoModelo}</p>
-      <p className="Preço">{preço}</p>
+      <h1 className="Marca">{values.Marca} - {values.Modelo}</h1>
+      <h2 className="AnoModelo">Ano: {values.AnoModelo}</h2>
+      <h2 className="Preço">Preço: {preço}</h2>
     </div>
   );
 

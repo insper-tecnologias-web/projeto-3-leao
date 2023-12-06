@@ -1,0 +1,120 @@
+.Nome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 3.5rem;
+}
+
+.about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 2rem;
+}
+
+
+.details {
+    display: flex;
+    flex-direction: column; /* Alterado para coluna */
+    align-items: center; /* Centralizado */
+    justify-content: center;
+    margin-top: 0rem;
+}
+
+.details-info {
+    display: flex;
+    flex-direction: row; /* Mantém lado a lado o ano e a gasolina */
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem; /* Espaço entre as informações e a descrição */
+}
+
+.details-left, .details-right {
+    margin-right: 5rem;
+    margin-left: 5rem;
+    
+}
+
+.details-left p {
+    font-size: 2rem;
+}
+
+.details-right p {
+    font-size: 2rem;
+}
+.description-title{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.description-container {
+    background-color: #ffa500; /* Cor de fundo laranja para a descrição */
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: auto; /* Ajuste a largura conforme necessário */
+}
+
+/* Mantenha os estilos existentes para .price-container */
+
+
+/* Estilo para o container de preço */
+.price-container {
+    display: flex;
+    flex-direction: column; /* Alterado para coluna para empilhar verticalmente */
+    align-items: center;
+    justify-content: center;
+    margin-top: 0rem;
+    background-color: #abcdd1; /* Cor de fundo para o container de preço */
+    padding: 1rem;
+    border-radius: 10px; /* Cantos arredondados */
+    width: 50%; /* Largura do container de preço */
+    height: auto;
+}
+
+.price-title {
+    display: flex;
+    justify-content: space-around; /* Espaçamento igual entre os títulos */
+    width: 50%; /* A mesma largura do container de preço */
+    margin-top: 3rem; /* Centraliza e adiciona margem abaixo */
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.price-title span{
+    font-size: 1.6rem;
+    color: #4e696d;
+}
+
+.price-values {
+    display: flex;
+    flex-direction: row; /* Mantém os preços lado a lado */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.price-value {
+    flex: 1; /* Distribui o espaço igualmente */
+    text-align: center;
+    font-size: 2rem;
+}
+
+.vertical-line {
+    border-left: 2px solid #000; /* Linha vertical preta */
+    height: 100%; /* Altura para preencher o container */
+    margin: 0 1rem;
+}
+
+.pv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
