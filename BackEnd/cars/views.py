@@ -47,6 +47,8 @@ def api_user(request):
         password = request.data['password']
 
         user = User.objects.create_user(username, email, password)
+        print("$$$$$$$$$$")
+        print(user)
         user.save()
         return Response(status=204)
 
@@ -75,6 +77,7 @@ def checkUserExistence(request):
         email = request.query_params.get('email', '')
         username = request.query_params.get('username', '')
         email_exists = User.objects.filter(email=email).exists()
+        print(email_exists)
         username_exists = User.objects.filter(username=username).exists()
         return Response({'email_exists': email_exists, 'username_exists': username_exists})
 

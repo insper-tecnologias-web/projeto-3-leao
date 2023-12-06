@@ -18,15 +18,37 @@ const CarPage = (props) => {
 
   return (
     <>
-    <Header></Header>
-      <h1>Car Page</h1>
-      <p className="Marca">Marca: {values.Marca}</p>
-      <p className="Modelo">Modelo: {values.Modelo}</p>
-      <p className="AnoModelo">Ano: {values.AnoModelo}</p>
-      <p className="Preço">Preço: {preço}</p>
-      <p className="Fipe">Preço tablea Fipe: {values.Valor}</p>
-      <p className="Descrição">Descrição: {payload.description}</p>
-      <p className="Combustível">Combustível: {values.Combustivel}</p>
+      <Header></Header>
+      <h1 className="Nome">{values.Marca} - {values.Modelo}</h1>
+      <div className="about">
+        <div className="details">
+          <div className="details-info">
+            <div className="details-left">
+              <p className="AnoModelo">Ano: {values.AnoModelo}</p>
+            </div>
+            <div className="details-right">
+              <p className="Combustível">Combustível: {values.Combustivel}</p>
+            </div>
+          </div>
+          <h1 className="description-title">Descrição do Vendedor: </h1>
+          <div className="description-container">
+            <p className="Descrição">{payload.description}</p>
+          </div>
+        </div>
+        <div className="pv">
+          <div className="price-title">
+              <span>Preço do Vendedor</span>
+              <span>Preço Tabela Fipe</span>
+          </div>
+          <div className="price-container">
+              <div className="price-values">
+                  <p className="price-value">{preço}</p>
+                  <div className="vertical-line"></div>
+                  <p className="price-value">{values.Valor}</p>
+              </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

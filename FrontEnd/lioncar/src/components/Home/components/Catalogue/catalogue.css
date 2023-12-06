@@ -2,29 +2,33 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    margin-top: 2.5rem;
 }
 
 .catalogue-section{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     width: inherit;
-    
+    margin-top: 2.5rem;
 }
 
 .catalogue-title{
     font-size: 40px;
     font-weight: bold;
-    margin: 0px 0px 0px 0px;
 }
 
 .publish-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #2196F3;
+    position: absolute;
+    top: 15.5rem;
+    right: 3.7rem;
+    width: 33px;
+    height: 33px;
+    background-color: #ff7011;
     color: #fff;
     padding: 10px;
     border-radius: 50%;
@@ -37,5 +41,5 @@
 }
 
 .publish-button:hover {
-    background-color: #1565C0;
+    background-color: #ff8a3c;
 }

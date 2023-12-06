@@ -27,15 +27,18 @@ function Catalogue() {
 
 
     return (
-        <div className="catalogue-div">
-            <p className="catalogue-title">Carros publicados</p>
-            <section className="catalogue-section">
-            {Cars.length> 0 ?(Cars.map((item) => (<CarCard key={`note__${item.id}`} goto={'/carpage'} payload={item} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
-            </section>
+        <div>
+            <div className="catalogue-div">
+                <p className="catalogue-title">Feed</p>
+                <section className="catalogue-section">
+                {Cars.length> 0 ?(Cars.map((item) => (<CarCard key={`note__${item.id}`} goto={'/carpage'} payload={item} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
+                </section>
 
-            {/* Botão para a página de publicação */}
+                {/* Botão para a página de publicação */}
+                
+            </div>
             <Link to="/publish" className="publish-button" >
-                <PublishIcon />
+                    <PublishIcon />
             </Link>
         </div>
     );

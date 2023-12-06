@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Db from '../../DB'
 import CarCard from '../Home/components/Catalogue/components/CarCard';
 import Header from "../Header";
+import './mycars.css'
 
 
 
@@ -25,9 +26,12 @@ const MyCars = (props) => {
     return (
         <>
             <Header></Header>
-            <h1 onClick={()=>{console.log(userCars)}}>My cars</h1>
-            <div>
-            {userCars.length> 0 ?(userCars.map((item) => (<CarCard key={`note__${item.id}`} payload={item} goto={"/editcarpage"} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
+            <div className="top">
+                <h1 className="title" onClick={()=>{console.log(userCars)}}>My cars</h1>
+                <h2 className="subtitle">Clique no card para editar seus carros!</h2>
+            </div>
+            <div className="cars-container">
+                {userCars.length> 0 ?(userCars.map((item) => (<CarCard key={`note__${item.id}`} payload={item} goto={"/editcarpage"} type= {item.type} price={item.price} model={item.model} brand={item.brand} year={item.year}></CarCard>))):null}
             </div>
         </>
     );
