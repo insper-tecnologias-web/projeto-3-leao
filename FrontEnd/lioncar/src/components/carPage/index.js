@@ -1,7 +1,7 @@
 import React from 'react';
 import "./carpage.css";
-import Header from './components/Header'
 import { useLocation } from "react-router-dom";
+import Header from "../Header";
 
 
 

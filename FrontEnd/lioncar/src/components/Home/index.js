@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from './components/Header'
 import Catalogue from "./components/Catalogue";
 import { useSelector } from "react-redux";
+import Header from "../Header";
 //import { useDispatch } from "react-redux";
 //import { logOut } from '../../redux/userSlice';
 
