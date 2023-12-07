@@ -35,7 +35,7 @@ const About = (props) => {
         <p className='about-text'>
         Então, mergulhe na experiência Lion Cars - onde a busca pelo seu carro perfeito se transforma em uma emocionante aventura. Compre e venda seu carro com o Leão e deixe-nos ser a força motriz por trás dos seus momentos inesquecíveis sobre quatro rodas!
         </p>
-        <Link to="/home" className="back-to-home">
+        <Link to="/" className="back-to-home">
             Voltar para Home
         </Link>
         </div>
