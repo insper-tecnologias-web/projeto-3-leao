@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = 'https://lion-car-u0bq.onrender.com';
 const API_TOKEN = 'http://localhost:8000/api/token/';
 
 const basicFetch = async (endpoint) => {
