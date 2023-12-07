@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE = 'https://lion-car-u0bq.onrender.com';
-const API_TOKEN = 'http://localhost:8000/api/token/';
+const API_TOKEN = 'https://lion-car-u0bq.onrender.com/api/token/';
 
 const basicFetch = async (endpoint) => {
     try {
